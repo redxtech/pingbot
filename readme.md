@@ -1,5 +1,5 @@
 # pingbot
-> The embotiment of a shitpost.
+> The em*bot*iment of a shitpost.
 
 ## Features
 
