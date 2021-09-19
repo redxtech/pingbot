@@ -27,8 +27,12 @@ client.on('messageCreate', message => {
     for (thing of things) {
       // should the thing run?
       if (should(thing.probability)) {
-        // log it & run the thing's function
-        console.log(chalk.cyan('Executing ' + thing.name))
+        // log it if it doesn't ruin every time
+        if (thing.probability !== 1) {
+          console.log(chalk.cyan('Executing ' + thing.name))
+        }
+
+        // run the thing's function
         thing.exec(message)
       }
     }
