@@ -7,7 +7,8 @@
   "author": "Gabe Dunn <gabe@sent.to>",
   "license": "MIT",
   "scripts": {
-    "start": "node ./src/main.js"
+    "start": "node ./src/main.js",
+    "dev": "nodemon ./src/main.js"
   },
   "dependencies": {
     "@discordjs/rest": "^0.1.0-canary.0",
@@ -22,5 +23,8 @@
     "utf-8-validate": "^5.0.5",
     "yarn": "^1.22.11",
     "zlib-sync": "^0.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
