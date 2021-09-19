@@ -1,0 +1,20 @@
+{
+  "name": "pingbot",
+  "version": "1.0.0",
+  "description": "The embotiment of a shitpost.",
+  "main": "src/main.js",
+  "repository": "https://github.com/redxtech/pingbot.git",
+  "author": "Gabe Dunn <gabe@sent.to>",
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "@discordjs/voice": "^0.6.0",
+    "add": "^2.0.6",
+    "bufferutil": "^4.0.3",
+    "discord-api-types": "^0.23.1",
+    "discord.js": "^13.1.0",
+    "utf-8-validate": "^5.0.5",
+    "yarn": "^1.22.11",
+    "zlib-sync": "^0.1.7"
+  }
+}
