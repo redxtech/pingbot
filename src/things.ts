@@ -15,30 +15,30 @@ interface Thing {
 
 export const things: Thing[] = [
   {
-    name: "Ping",
+    name: 'Ping',
     probability: probabilities.ping || 10000,
-    exec: (m: Message) => m.channel.send("@everyone")
+    exec: (m: Message) => m.channel.send('@everyone')
   },
   {
-    name: "React",
+    name: 'React',
     probability: probabilities.react || 100,
     exec: (m: Message) => m.react(m.guild?.emojis.cache.random() as GuildEmoji)
   },
   {
-    name: "Nickname",
+    name: 'Nickname',
     probability: probabilities.nickname || 1000,
     exec: (m: Message) => m.member?.setNickname(generateNickname(), 'you just got pingbotted')
       .then()
       .catch((err: Error) => console.error(`Couldn't change ${m.member?.user.tag}'s nickname: ${err}`))
   },
   {
-    name: "PingBot Love",
+    name: 'PingBot Love',
     probability: 1,
     exec: (m: Message) => /\bi\b.+\b(love|like|appreciate)\b.+\bpingbot\b/.test(m.content.toLowerCase())
       && m.reply('heart <3')
   },
   {
-    name: "PingBot Hate",
+    name: 'PingBot Hate',
     probability: 1,
     exec: (m: Message) => /(\bi\b.+\b(hate|dislike)\b.+\bpingbot\b)|(\bpingbot\b.+\b(sucks|is (bad|garbage|trash|ass|shit))\b)|(fuck.+pingbot)/.test(m.content.toLowerCase())
       && m.reply(":'(")
