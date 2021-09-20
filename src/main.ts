@@ -1,13 +1,13 @@
-const chalk = require('chalk')
-const { Client, Intents } = require('discord.js')
+import chalk from 'chalk'
+import { Client, Intents, Message } from 'discord.js'  
 
-const { should } = require('./utils')
-const { things } = require('./things')
+import { should } from './utils'
+import { things } from './things'
 
-const { token } = require('../config.json')
+import { token } from '../config.json'
 
 // create a client instance
-const client = new Client({
+const client: Client = new Client({
   intents: [
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES
@@ -15,16 +15,16 @@ const client = new Client({
 })
 
 // announce the client is ready to go
-client.once('ready', c => {
-  console.log(chalk.green.bold(`Logged in as ${c.user.tag}...`))
+client.once('ready', (c: Client) => {
+  console.log(chalk.green.bold(`Logged in as ${c.user?.tag}...`))
 })
 
 // listen to each message
-client.on('messageCreate', message => {
+client.on('messageCreate', (message: Message) => {
   // skip messages from pingbot & outside guild text channels
-  if (message.channel.type === 'GUILD_TEXT' && message.member.user.id !== client.user.id) {
+  if (message.channel.type === 'GUILD_TEXT' && message.member?.user.id !== client.user?.id) {
     // loop through all the things
-    for (thing of things) {
+    for (const thing of things) {
       // should the thing run?
       if (should(thing.probability)) {
         // log it if it doesn't ruin every time

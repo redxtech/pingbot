@@ -1,13 +1,13 @@
 // utility functions
 
 // random number generator
-const random = upTo => (Math.floor(Math.random() * upTo) + 1)
+const random = (upTo: number) => (Math.floor(Math.random() * upTo) + 1)
 
 // probability tester
-const should = outOf => random(outOf) === 1
+export const should = (outOf: number) => random(outOf) === 1
 
 // generate a random string of characters to use as a nickname
-const generateNickname = () => {
+export const generateNickname = () => {
   // initialize empty array to store the name in
   const nicknameArray = []
 
@@ -26,7 +26,3 @@ const generateNickname = () => {
   return nicknameArray.join('')
 }
 
-module.exports = {
-  should,
-  generateNickname
-}
