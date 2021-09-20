@@ -12,7 +12,6 @@
     "dev": "nodemon --exec ts-node ./src/main.ts"
   },
   "dependencies": {
-    "@discordjs/rest": "^0.1.0-canary.0",
     "@discordjs/voice": "^0.6.0",
     "add": "^2.0.6",
     "bufferutil": "^4.0.3",
@@ -22,8 +21,7 @@
     "global": "^4.4.0",
     "javascript-typescript-langserver": "^2.11.3",
     "utf-8-validate": "^5.0.5",
-    "yarn": "^1.22.11",
-    "zlib-sync": "^0.1.7"
+    "yarn": "^1.22.11"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",
