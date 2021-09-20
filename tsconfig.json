@@ -4,9 +4,5 @@
     "resolveJsonModule": true,
     "outDir": "dist"
   },
-  "files": [
-    "./src/main.ts",
-    "./src/utils.ts",
-    "./src/things.ts"
-  ]
+  "include": ["./src/*.ts"]
 }
