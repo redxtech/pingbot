@@ -4,6 +4,8 @@ const { probabilities } = require('../config.json')
 // ideas:
 // - create/assign random coloured roles
 
+// types
+
 module.exports = {
   things: [
     {
@@ -34,6 +36,11 @@ module.exports = {
       probability: 1,
       exec: m => /(\bi\b.+\b(hate|dislike)\b.+\bpingbot\b)|(\bpingbot\b.+\b(sucks|is (bad|garbage|trash|ass|shit))\b)|(fuck.+pingbot)/.test(m.content.toLowerCase())
         && m.reply(":'(")
+    },
+    {
+      name: 'Rolled',
+      probability: 10,
+      exec: m => m.channel.send('https://youtu.be/dQw4w9WgXcQ')
     }
   ]
 }
