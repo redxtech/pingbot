@@ -1,6 +1,9 @@
 const { generateNickname } = require('./utils')
 const { probabilities } = require('../config.json')
 
+// ideas:
+// - create/assign random coloured roles
+
 module.exports = {
   things: [
     {
