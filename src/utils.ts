@@ -12,7 +12,7 @@ export const generateNickname = () => {
   const nicknameArray = []
 
   // a list of possible characters to show up in the nickname
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-=_+[]\{}|;\':",./<>? '
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-=_+[]{}|;\':",./<>? '
 
   // the length of the nickname, between 6 & 26
   const nicknameLength = 6 + random(20)
@@ -25,4 +25,3 @@ export const generateNickname = () => {
   // return the nickname as a string
   return nicknameArray.join('')
 }
-

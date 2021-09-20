@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import { Client, Intents, Message } from 'discord.js'  
+import { Client, Intents, Message } from 'discord.js'
 
 import { should } from './utils'
 import { things } from './things'
@@ -41,4 +41,3 @@ client.on('messageCreate', (message: Message) => {
 
 // log in the client
 client.login(token)
-

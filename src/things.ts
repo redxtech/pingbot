@@ -34,14 +34,14 @@ export const things: Thing[] = [
   {
     name: 'PingBot Love',
     probability: 1,
-    exec: (m: Message) => /\bi\b.+\b(love|like|appreciate)\b.+\bpingbot\b/.test(m.content.toLowerCase())
-      && m.reply('heart <3')
+    exec: (m: Message) => /\bi\b.+\b(love|like|appreciate)\b.+\bpingbot\b/.test(m.content.toLowerCase()) &&
+      m.reply('heart <3')
   },
   {
     name: 'PingBot Hate',
     probability: 1,
-    exec: (m: Message) => /(\bi\b.+\b(hate|dislike)\b.+\bpingbot\b)|(\bpingbot\b.+\b(sucks|is (bad|garbage|trash|ass|shit))\b)|(fuck.+pingbot)/.test(m.content.toLowerCase())
-      && m.reply(":'(")
+    exec: (m: Message) => /(\bi\b.+\b(hate|dislike)\b.+\bpingbot\b)|(\bpingbot\b.+\b(sucks|is (bad|garbage|trash|ass|shit))\b)|(fuck.+pingbot)/.test(m.content.toLowerCase()) &&
+      m.reply(":'(")
   },
   {
     name: 'Rolled',
@@ -49,4 +49,3 @@ export const things: Thing[] = [
     exec: (m: Message) => m.channel.send('<https://youtu.be/dQw4w9WgXcQ>')
   }
 ]
-
