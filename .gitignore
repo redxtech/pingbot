@@ -1,6 +1,8 @@
 # config file
 config.json
 
+dist
+
 # Logs
 logs
 *.log

@@ -1,6 +1,12 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig.json",
+  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
-    "resolveJsonModule": true
-  }
+    "resolveJsonModule": true,
+    "outDir": "dist"
+  },
+  "files": [
+    "./src/main.ts",
+    "./src/utils.ts",
+    "./src/things.ts"
+  ]
 }
