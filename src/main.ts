@@ -34,6 +34,9 @@ client.on('messageCreate', (message: Message) => {
 
         // run the thing's function
         thing.exec(message)
+
+        // exit since we only want one thing to run at once
+        break
       }
     }
   }
