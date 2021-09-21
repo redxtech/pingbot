@@ -1,17 +1,13 @@
 import { GuildEmoji, Message } from 'discord.js'
 
 import { generateNickname } from './utils'
+
+import { Thing } from './types'
+
 import { probabilities } from '../config.json'
 
 // ideas:
 // - create/assign random coloured roles
-
-// types
-interface Thing {
-  name: string,
-  probability: number,
-  exec(message: Message): any
-}
 
 export const things: Thing[] = [
   {
