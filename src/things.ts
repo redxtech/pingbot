@@ -51,7 +51,7 @@ export const things: Thing[] = [
   },
   {
     name: 'Rolled',
-    probability: 10,
+    probability: probabilities.rolled,
     exec: (m: Message) => m.channel.send('<https://youtu.be/dQw4w9WgXcQ>')
   }
 ]
