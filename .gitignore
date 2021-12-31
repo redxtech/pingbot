@@ -2,6 +2,7 @@
 config.json
 
 dist
+tags
 
 # Logs
 logs

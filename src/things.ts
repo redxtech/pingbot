@@ -1,6 +1,7 @@
 import { GuildEmoji, Message } from 'discord.js'
 
 import { generateNickname } from './utils'
+import { playOof } from './voice'
 
 import { Thing } from './types'
 
@@ -38,6 +39,13 @@ export const things: Thing[] = [
     probability: 1,
     exec: (m: Message) => /(\bi\b.+\b(hate|dislike)\b.+\bpingbot\b)|(\bpingbot\b.+\b(sucks|is (bad|garbage|trash|ass|shit))\b)|(fuck.+pingbot)/.test(m.content.toLowerCase()) &&
       m.reply(":'(")
+  },
+  {
+    name: 'O O F',
+    probability: 1,
+    exec: (m: Message) => {
+      playOof(m)
+    }
   },
   {
     name: 'Rolled',
