@@ -66,11 +66,7 @@ export const things: Thing[] = [
   {
     name: 'O O F',
     probability: 1,
-    exec: (m: Message) => {
-      if (m.content.toLowerCase() === 'o o f') {
-        playOof(m)
-      }
-    }
+    exec: (m: Message) => /o\s?o\s?f/.test(m.content.toLowerCase()) && playOof(m)
   },
   {
     name: 'Rolled',
