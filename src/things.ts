@@ -1,7 +1,7 @@
 import { GuildEmoji, Message } from 'discord.js'
 
 import { generateNickname } from './utils'
-import { playOof } from './voice'
+import { playOof } from './funcs/voice'
 
 import { Thing } from './types'
 
@@ -22,9 +22,9 @@ const getProb = (n: string): number => {
 
   // return config value if it exists, return default value otherwise
   return Object.prototype.hasOwnProperty.call(probabilities, n)
-    // @ts-ignore
+    // @ts-expect-error can't expect user to use proper type in config.ts
     ? probabilities[n]
-    // @ts-ignore
+    // @ts-expect-error can't expect user to use proper type in config.ts
     : defaults[n]
 }
 
@@ -43,30 +43,39 @@ export const things: Thing[] = [
   {
     name: 'Nickname',
     probability: getProb('nickname'),
-    exec: (m: Message) => m.member?.setNickname(generateNickname(), 'you just got pingbotted')
-      .then()
-      .catch((err: Error) => console.error(`Couldn't change ${m.member?.user.tag}'s nickname: ${err}`))
+    exec: (m: Message) =>
+      m.member
+        ?.setNickname(generateNickname(), 'you just got pingbotted')
+        .then()
+        .catch((err: Error) =>
+          console.error(
+            `Couldn't change ${m.member?.user.tag}'s nickname: ${err}`
+          )
+        )
   },
   {
     name: 'PingBot Love',
     probability: 1,
-    exec: (m: Message) => {
-      /\bi\b.+\b(love|like|appreciate)\b.+\bpingbot\b/.test(m.content.toLowerCase()) &&
-      m.reply('heart <3')
+    exec: (m: Message): void => {
+      ;/\bi\b.+\b(love|like|appreciate)\b.+\bpingbot\b/.test(
+        m.content.toLowerCase()
+      ) && m.reply('heart <3')
     }
   },
   {
     name: 'PingBot Hate',
     probability: 1,
-    exec: (m: Message) => {
-      /(\bi\b.+\b(hate|dislike)\b.+\bpingbot\b)|(\bpingbot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit))\b)|(fuck.+pingbot)/.test(m.content.toLowerCase()) &&
-      m.reply(":'(")
+    exec: (m: Message): void => {
+      ;/(\bi\b.+\b(hate|dislike)\b.+\bpingbot\b)|(\bpingbot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit))\b)|(fuck.+pingbot)/.test(
+        m.content.toLowerCase()
+      ) && m.reply(":'(")
     }
   },
   {
     name: 'O O F',
     probability: 1,
-    exec: (m: Message) => /o\s?o\s?f/.test(m.content.toLowerCase()) && playOof(m)
+    exec: (m: Message) =>
+      /o\s?o\s?f/.test(m.content.toLowerCase()) && playOof(m)
   },
   {
     name: 'Rolled',

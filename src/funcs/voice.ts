@@ -1,8 +1,12 @@
-import { join } from 'path'
 import { Message } from 'discord.js'
-import { createAudioPlayer, createAudioResource, joinVoiceChannel, VoiceConnectionStatus } from '@discordjs/voice'
+import {
+  createAudioPlayer,
+  createAudioResource,
+  joinVoiceChannel,
+  VoiceConnectionStatus
+} from '@discordjs/voice'
 
-import { oof } from '../config'
+import { oof } from '../../config'
 
 export const playOof = (m: Message): void => {
   // detect if the user is in a voice channel
@@ -17,7 +21,7 @@ export const playOof = (m: Message): void => {
         channelId: channel.id,
         guildId: channel.guild.id,
         // TODO fix this
-        // @ts-ignore
+        // @ts-expect-error bug, discordjs hasn't implemented a fix yet
         adapterCreator: channel.guild.voiceAdapterCreator
       })
 

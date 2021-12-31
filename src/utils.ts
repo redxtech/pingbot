@@ -1,7 +1,7 @@
 // utility functions
 
 // random number generator
-const random = (upTo: number) => (Math.floor(Math.random() * upTo) + 1)
+const random = (upTo: number) => Math.floor(Math.random() * upTo) + 1
 
 // probability tester
 export const should = (outOf: number) => random(outOf) === 1
@@ -12,7 +12,8 @@ export const generateNickname = () => {
   const nicknameArray = []
 
   // a list of possible characters to show up in the nickname
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-=_+[]{}|;\':",./<>? '
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-=_+[]{}|;\':",./<>? '
 
   // the length of the nickname, between 6 & 26
   const nicknameLength = 6 + random(20)

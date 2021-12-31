@@ -23,7 +23,10 @@ client.once('ready', (c: Client) => {
 // listen to each message
 client.on('messageCreate', (message: Message) => {
   // skip messages from pingbot & outside guild text channels
-  if (message.channel.type === 'GUILD_TEXT' && message.member?.user.id !== client.user?.id) {
+  if (
+    message.channel.type === 'GUILD_TEXT' &&
+    message.member?.user.id !== client.user?.id
+  ) {
     // loop through all the things
     for (const thing of things) {
       // should the thing run?
