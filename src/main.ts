@@ -4,7 +4,7 @@ import { Client, Intents, Message } from 'discord.js'
 import { should } from './utils'
 import { things } from './things'
 
-import { token } from '../config.json'
+import { token } from '../config'
 
 // create a client instance
 const client: Client = new Client({
