@@ -2,6 +2,8 @@ import { join } from 'path'
 import { Message } from 'discord.js'
 import { createAudioPlayer, createAudioResource, joinVoiceChannel, VoiceConnectionStatus } from '@discordjs/voice'
 
+import { oof } from '../config.json'
+
 export const playOof = (m: Message): void => {
   // detect if the user is in a voice channel
   const member = m.member
@@ -20,7 +22,7 @@ export const playOof = (m: Message): void => {
       })
 
       // create the audio player
-      const oofSound = createAudioResource(join(__dirname, 'resources', 'oof.ogg'))
+      const oofSound = createAudioResource(oof)
       const player = createAudioPlayer()
       player.play(oofSound)
 
