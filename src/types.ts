@@ -5,5 +5,6 @@ import { Message } from 'discord.js'
 export interface Thing {
   name: string,
   probability: number,
-  exec(message: Message): any
+  exec(message: Message): any,
+  break?: boolean
 }

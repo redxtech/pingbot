@@ -36,7 +36,9 @@ client.on('messageCreate', (message: Message) => {
         thing.exec(message)
 
         // exit since we only want one thing to run at once
-        break
+        if (thing.break) {
+          break
+        }
       }
     }
   }
