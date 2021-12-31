@@ -44,7 +44,9 @@ export const things: Thing[] = [
     name: 'O O F',
     probability: 1,
     exec: (m: Message) => {
-      playOof(m)
+      if (m.content.toLowerCase() === 'o o f') {
+        playOof(m)
+      }
     }
   },
   {
