@@ -9,6 +9,7 @@ For each message that is sent, there is (configurable) chance that pingbot will:
  - react with a random emoji (often eerily in-tune to the mood of the message)
  - set your nickname to a string of random characters (most fun when on a server where users can't change their own
      nicknames)
+ - send you an insult through dms
  - one more secret bonus feature you'll have to wait and find out (spoilers in source code)
 
 ### pingbot love
