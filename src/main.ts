@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { Client, Intents, Message } from 'discord.js'
 
-import { should } from './utils'
+import { sendMessage, should } from './utils'
 import { things } from './things'
 
 import { token } from '../config'
@@ -9,9 +9,13 @@ import { token } from '../config'
 // create a client instance
 const client: Client = new Client({
   intents: [
+    Intents.FLAGS.DIRECT_MESSAGES,
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES,
     Intents.FLAGS.GUILD_VOICE_STATES
+  ],
+  partials: [
+    'CHANNEL'
   ]
 })
 
@@ -45,6 +49,12 @@ client.on('messageCreate', (message: Message) => {
         }
       }
     }
+  } else if (
+    message.channel.type === 'DM' &&
+    message.author.id !== client.user?.id
+  ) {
+    // if the bot gets DMed, tell them that he has a gf
+    sendMessage(message, 'get out of my dms, i have a gf', false)
   }
 })
 

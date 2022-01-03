@@ -57,20 +57,15 @@ export const things: Thing[] = [
   {
     name: 'DM',
     probability: getProb('dm'),
-    exec: async (m: Message): Promise<void> => {
-      // create the DM channel
-      const dm = await m.member?.createDM()
-
+    exec: (m: Message): void => {
       // prepare a list of insults
       const insults = [
         'you bitch.',
         'your mother was a hamster and your father smelt of elderberries!'
       ]
 
-      // if the dm channel is valid, select a random insult to send them in the dms
-      if (dm) {
-        dm.send(insults[Math.floor((Math.random() * insults.length))])
-      }
+      // send a random insult
+      m.author.send(insults[Math.floor((Math.random() * insults.length))])
     }
   },
   {
