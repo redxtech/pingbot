@@ -25,6 +25,9 @@ if you send a message that contains the word 'o o f', pingbot will do one of two
  - if you are in a voice channel, pingbot will join your voice channel, play the roblox *oof* sound, and leave.
  - if you are not in a voice channel, pingbot will simply reply 'o o f' instead.
 
+### dms
+if you send a dm to pingbot, he will respond by telling you to get out of his dms, he has a girlfriend already.
+
 ## options
 all options and configuration is done through `config.ts`.
 

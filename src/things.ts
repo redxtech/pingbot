@@ -34,7 +34,7 @@ export const things: Thing[] = [
   {
     name: 'Ping',
     probability: getProb('ping'),
-    exec: (m: Message) => sendMessage(m, '@everyone', false)
+    exec: (m: Message) => sendMessage(m, '@everyone')
   },
   {
     name: 'React',
@@ -61,7 +61,8 @@ export const things: Thing[] = [
       // prepare a list of insults
       const insults = [
         'you bitch.',
-        'your mother was a hamster and your father smelt of elderberries!'
+        'your mother was a hamster and your father smelt of elderberries!',
+        'ratio + you\'re balding'
       ]
 
       // send a random insult
