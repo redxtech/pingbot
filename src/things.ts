@@ -80,6 +80,6 @@ export const things: Thing[] = [
   {
     name: 'Rolled',
     probability: getProb('rolled'),
-    exec: (m: Message) => m.channel.send('<https://youtu.be/dQw4w9WgXcQ>')
+    exec: (m: Message) => m.reply('<https://youtu.be/dQw4w9WgXcQ>')
   }
 ]
