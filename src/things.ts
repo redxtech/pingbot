@@ -1,6 +1,6 @@
 import { GuildEmoji, Message } from 'discord.js'
 
-import { generateNickname } from './utils'
+import { generateNickname, sendMessage } from './utils'
 import { playOof } from './funcs/voice'
 
 import { Thing } from './types'
@@ -33,7 +33,7 @@ export const things: Thing[] = [
   {
     name: 'Ping',
     probability: getProb('ping'),
-    exec: (m: Message) => m.channel.send('@everyone')
+    exec: (m: Message) => sendMessage(m, '@everyone', false)
   },
   {
     name: 'React',
@@ -57,18 +57,18 @@ export const things: Thing[] = [
     name: 'PingBot Love',
     probability: 1,
     exec: (m: Message): void => {
-      ;/\bi\b.+\b(love|like|appreciate)\b.+\bpingbot\b/.test(
+      ;/(\bi\b.+\b(love|like|appreciate))|(thanks)\b.+\bpingbot\b/.test(
         m.content.toLowerCase()
-      ) && m.reply('heart <3')
+      ) && sendMessage(m, 'heart <3')
     }
   },
   {
     name: 'PingBot Hate',
     probability: 1,
     exec: (m: Message): void => {
-      ;/(\bi\b.+\b(hate|dislike)\b.+\bpingbot\b)|(\bpingbot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit))\b)|(fuck.+pingbot)/.test(
+      ;/(\bi\b.+\b(hate|dislike)\b.+\bpingbot\b)|(\bpingbot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit|the worst))\b)|(fuck.+pingbot)/.test(
         m.content.toLowerCase()
-      ) && m.reply(":'(")
+      ) && sendMessage(m, ":'(")
     }
   },
   {
@@ -80,6 +80,6 @@ export const things: Thing[] = [
   {
     name: 'Rolled',
     probability: getProb('rolled'),
-    exec: (m: Message) => m.reply('<https://youtu.be/dQw4w9WgXcQ>')
+    exec: (m: Message) => sendMessage(m, '<https://youtu.be/dQw4w9WgXcQ>')
   }
 ]

@@ -6,6 +6,8 @@ import {
   VoiceConnectionStatus
 } from '@discordjs/voice'
 
+import { sendMessage } from '../utils'
+
 import { oof } from '../../config'
 
 export const playOof = (m: Message): void => {
@@ -45,6 +47,6 @@ export const playOof = (m: Message): void => {
     }
   } else {
     // reply with o o f if not in voice channel
-    m.reply('o o f')
+    sendMessage(m, 'o o f')
   }
 }

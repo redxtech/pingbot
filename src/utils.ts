@@ -1,13 +1,15 @@
+import { Message, MessageOptions, MessagePayload } from 'discord.js'
+
 // utility functions
 
 // random number generator
 const random = (upTo: number) => Math.floor(Math.random() * upTo) + 1
 
 // probability tester
-export const should = (outOf: number) => random(outOf) === 1
+export const should = (outOf: number): boolean => random(outOf) === 1
 
 // generate a random string of characters to use as a nickname
-export const generateNickname = () => {
+export const generateNickname = (): string => {
   // initialize empty array to store the name in
   const nicknameArray = []
 
@@ -26,3 +28,19 @@ export const generateNickname = () => {
   // return the nickname as a string
   return nicknameArray.join('')
 }
+
+// function to send a message with a typing indicator
+export const sendMessage = (m: Message, content: string | MessageOptions | MessagePayload, reply = true): void => {
+  // send the typing indicator
+  m.channel.sendTyping()
+
+  // wait a bit, then send the message
+  setTimeout(() => {
+    if (reply) {
+      m.reply(content)
+    } else {
+      m.channel.send(content)
+    }
+  }, 750)
+}
+
