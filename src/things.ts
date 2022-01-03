@@ -17,6 +17,7 @@ const getProb = (n: string): number => {
     ping: 10000,
     react: 100,
     nickname: 1000,
+    dm: 1000,
     rolled: 1000
   }
 
@@ -52,6 +53,25 @@ export const things: Thing[] = [
             `Couldn't change ${m.member?.user.tag}'s nickname: ${err}`
           )
         )
+  },
+  {
+    name: 'DM',
+    probability: getProb('dm'),
+    exec: async (m: Message): Promise<void> => {
+      // create the DM channel
+      const dm = await m.member?.createDM()
+
+      // prepare a list of insults
+      const insults = [
+        'you bitch.',
+        'your mother was a hamster and your father smelt of elderberries!'
+      ]
+
+      // if the dm channel is valid, select a random insult to send them in the dms
+      if (dm) {
+        dm.send(insults[Math.floor((Math.random() * insults.length))])
+      }
+    }
   },
   {
     name: 'PingBot Love',
