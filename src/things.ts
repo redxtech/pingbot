@@ -1,7 +1,7 @@
 import { GuildEmoji, Message } from 'discord.js'
 
 import { generateNickname, sendMessage } from './utils'
-import { playOof } from './funcs/voice'
+import { playMonkey, playOof } from './funcs/voice'
 
 import { Thing } from './types'
 
@@ -62,7 +62,8 @@ export const things: Thing[] = [
       const insults = [
         'you bitch.',
         'your mother was a hamster and your father smelt of elderberries!',
-        'ratio + you\'re balding'
+        'ratio + you\'re balding',
+        'let me guess, someone stole your sweetroll...'
       ]
 
       // send a random insult
@@ -92,6 +93,12 @@ export const things: Thing[] = [
     probability: 1,
     exec: (m: Message) =>
       /o(\s*)o\1f/.test(m.content.toLowerCase()) && playOof(m)
+  },
+  {
+    name: 'OO OO AA AA',
+    probability: 1,
+    exec: (m: Message) =>
+      /oo oo aa aa/.test(m.content.toLowerCase()) && playMonkey(m)
   },
   {
     name: 'Rolled',
