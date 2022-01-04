@@ -73,7 +73,7 @@ export const things: Thing[] = [
     name: 'PingBot Love',
     probability: 1,
     exec: (m: Message): void => {
-      ;/(\bi\b.+\b(love|like|appreciate))|(thanks)\b.+\bpingbot\b/.test(
+      ;/(\b(i\b.+\b(love|like|appreciate))|(thanks))\b.+\bpingbot\b/.test(
         m.content.toLowerCase()
       ) && sendMessage(m, 'heart <3')
     }
