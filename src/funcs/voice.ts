@@ -83,7 +83,7 @@ export const playMonkey = (m: Message): void => {
           setTimeout(() => {
             player.stop()
             connection.destroy()
-          }, 1300)
+          }, 3100)
         }
       })
     }
