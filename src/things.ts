@@ -68,6 +68,10 @@ export const things: Thing[] = [
 
       // send a random insult
       m.author.send(insults[Math.floor((Math.random() * insults.length))])
+      .then()
+      .catch((err: Error) => {
+        console.error(`Couldn't send DM to ${m.member?.user.tag}: ${err}`)
+      })
     }
   },
   {
@@ -83,7 +87,7 @@ export const things: Thing[] = [
     name: 'PingBot Hate',
     probability: 1,
     exec: (m: Message): void => {
-      ;/(\bi\b.+\b(hate|dislike)\b.+\bpingbot\b)|(\bpingbot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit|the worst))\b)|(fuck.+pingbot)/.test(
+      ;/(\bi\b.+\b(hate|dislike)\b.+\bpingbot\b)|(\bpingbot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit|the worst))\b)|(\bfuck\b.+\bpingbot\b)/.test(
         m.content.toLowerCase()
       ) && sendMessage(m, ":'(")
     }
