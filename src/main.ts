@@ -29,7 +29,7 @@ client.on('messageCreate', (message: Message) => {
   // skip messages from pingbot & outside guild text channels
   if (
     message.channel.type === 'GUILD_TEXT' &&
-    message.member?.user.id !== client.user?.id
+    !message.member?.user?.bot
   ) {
     // loop through all the things
     for (const thing of things) {
