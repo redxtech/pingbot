@@ -1,4 +1,5 @@
 import chalk from 'chalk'
+import dayjs from 'dayjs'
 import { Client, Intents, Message } from 'discord.js'
 
 import { sendMessage, should } from './utils'
@@ -37,7 +38,8 @@ client.on('messageCreate', (message: Message) => {
       if (should(thing.probability)) {
         // log it if it doesn't run every time
         if (thing.probability !== 1) {
-          console.log(chalk.cyan(`Executing Thing: ${thing.name}`))
+          const ds = dayjs().format('YYYY-MM-DD HH:mm:ss')
+          console.log(chalk.cyan(`[${ds}] Executing Thing: ${thing.name}`))
         }
 
         // run the thing's function
