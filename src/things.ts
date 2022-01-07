@@ -87,7 +87,7 @@ export const things: Thing[] = [
     name: 'PingBot Hate',
     probability: 1,
     exec: (m: Message): void => {
-      ;/(\bi\b.+\b(hate|dislike)\b.+\bpingbot\b)|(\bpingbot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit|the worst))\b)|(\bfuck\b.+\bpingbot\b)/.test(
+      ;/(\bi\b.+\b(hate|dislike)\b.+\bping\s*bot\b)|(\bping\s*bot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit|the worst))\b)|(\bfuck\b.+\bping\s*bot\b)/.test(
         m.content.toLowerCase()
       ) && sendMessage(m, ":'(")
     }
