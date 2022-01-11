@@ -9,6 +9,7 @@ import { probabilities } from '../config'
 
 // ideas:
 // - create/assign random coloured roles
+// - TODO make it so that you can have probability OR message match
 
 // function to get probability, and fallback if one isn't provided by config
 const getProb = (n: string): number => {
@@ -103,6 +104,19 @@ export const things: Thing[] = [
     probability: 1,
     exec: (m: Message) =>
       /oo oo aa aa/.test(m.content.toLowerCase()) && playMonkey(m)
+  },
+  {
+    name: 'Birthday',
+    probability: 1,
+    exec: (m: Message): void => {
+      if (/\bbirthday\b/.test(m.content.toLowerCase())) {
+        const birthdateEmote = m.guild?.emojis.cache.find(e => /birthday/.test(e.name?.toLowerCase() || ''))
+
+        if (birthdateEmote) {
+          m.react(birthdateEmote)
+        }
+      }
+    }
   },
   {
     name: 'Rolled',
