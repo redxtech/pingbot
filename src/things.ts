@@ -96,7 +96,7 @@ export const things: Thing[] = [
     name: 'O O F',
     probability: 1,
     exec: (m: Message) =>
-      /o(\s*)o\1f/.test(m.content.toLowerCase()) && playOof(m)
+      /\bo(\s*)o\1f\b/.test(m.content.toLowerCase()) && playOof(m)
   },
   {
     name: 'OO OO AA AA',
