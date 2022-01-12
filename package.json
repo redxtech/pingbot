@@ -27,12 +27,14 @@
     "global": "^4.4.0",
     "javascript-typescript-langserver": "^2.11.3",
     "libsodium-wrappers": "^0.7.9",
+    "nedb": "^1.8.0",
     "sodium": "^3.0.2",
     "utf-8-validate": "^5.0.7",
     "yarn": "^1.22.17"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",
+    "@types/nedb": "^1.8.12",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
     "eslint": "^7.32.0",
