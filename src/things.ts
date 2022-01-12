@@ -5,46 +5,24 @@ import { playMonkey, playOof } from './funcs/voice'
 
 import { Thing } from './types'
 
-import { probabilities } from '../config'
-
 // ideas:
 // - create/assign random coloured roles
-// - TODO make it so that you can have probability OR message match
-
-// function to get probability, and fallback if one isn't provided by config
-const getProb = (n: string): number => {
-  // default values
-  const defaults = {
-    ping: 10000,
-    react: 100,
-    nickname: 1000,
-    dm: 1000,
-    rolled: 1000
-  }
-
-  // return config value if it exists, return default value otherwise
-  return Object.prototype.hasOwnProperty.call(probabilities, n)
-    // @ts-expect-error can't expect user to use proper type in config.ts
-    ? probabilities[n]
-    // @ts-expect-error can't expect user to use proper type in config.ts
-    : defaults[n]
-}
 
 // array of things
 export const things: Thing[] = [
   {
     name: 'Ping',
-    probability: getProb('ping'),
+    probability: 'ping',
     exec: (m: Message) => sendMessage(m, '@everyone')
   },
   {
     name: 'React',
-    probability: getProb('react'),
+    probability: 'react',
     exec: (m: Message) => m.react(m.guild?.emojis.cache.random() as GuildEmoji)
   },
   {
     name: 'Nickname',
-    probability: getProb('nickname'),
+    probability: 'nickname',
     exec: (m: Message) =>
       m.member
         ?.setNickname(generateNickname(), 'you just got pingbotted')
@@ -57,7 +35,7 @@ export const things: Thing[] = [
   },
   {
     name: 'DM',
-    probability: getProb('dm'),
+    probability: 'dm',
     exec: (m: Message): void => {
       // prepare a list of insults
       const insults = [
@@ -108,7 +86,7 @@ export const things: Thing[] = [
   },
   {
     name: 'Rolled',
-    probability: getProb('rolled'),
+    probability: 'rolled',
     exec: (m: Message) => sendMessage(m, '<https://youtu.be/dQw4w9WgXcQ>')
   }
 ]

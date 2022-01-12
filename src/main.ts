@@ -6,6 +6,7 @@ import { sendMessage, should } from './utils'
 import { things } from './things'
 
 import { token } from '../config'
+import { getProb } from './db'
 
 // create a client instance
 const client: Client = new Client({
@@ -26,7 +27,7 @@ client.once('ready', (c: Client) => {
 })
 
 // listen to each message
-client.on('messageCreate', (message: Message) => {
+client.on('messageCreate', async (message: Message) => {
   // skip messages from pingbot & outside guild text channels
   if (
     message.channel.type === 'GUILD_TEXT' &&
@@ -34,9 +35,14 @@ client.on('messageCreate', (message: Message) => {
   ) {
     // loop through all the things
     for (const thing of things) {
-      // run it if it's probability is picked or if it's a message match
+      // if probability, should pull from db
+      const prob = thing.probability
+        ? await getProb(message.guild?.id, thing.probability)
+        : 0
+
+      // run it if its probability is picked or if it's a message match
       if (
-        (thing.probability && should(thing.probability))
+        (prob && should(prob))
         ||
         (thing.match && thing.match.test(message.content.toLowerCase()))
       ) {
