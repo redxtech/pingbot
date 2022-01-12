@@ -4,7 +4,8 @@ import { Message } from 'discord.js'
 // types
 export interface Thing {
   name: string
-  probability: number
+  probability?: number
+  match?: RegExp
   exec(message: Message): any
   break?: boolean
 }

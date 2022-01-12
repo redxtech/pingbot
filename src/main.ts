@@ -34,13 +34,15 @@ client.on('messageCreate', (message: Message) => {
   ) {
     // loop through all the things
     for (const thing of things) {
-      // should the thing run?
-      if (should(thing.probability)) {
-        // log it if it doesn't run every time
-        if (thing.probability !== 1) {
-          const ds = dayjs().format('YYYY-MM-DD HH:mm:ss')
-          console.log(chalk.cyan(`[${ds}] Executing Thing: ${thing.name}`))
-        }
+      // run it if it's probability is picked or if it's a message match
+      if (
+        (thing.probability && should(thing.probability))
+        ||
+        (thing.match && thing.match.test(message.content.toLowerCase()))
+      ) {
+        // log the thing
+        const ds = dayjs().format('YYYY-MM-DD HH:mm:ss')
+        console.log(chalk.cyan(`[${ds}] Executing Thing: ${thing.name}`))
 
         // run the thing's function
         thing.exec(message)

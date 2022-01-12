@@ -77,44 +77,32 @@ export const things: Thing[] = [
   },
   {
     name: 'PingBot Love',
-    probability: 1,
-    exec: (m: Message): void => {
-      ;/(\b(i\b.+\b(love|like|appreciate))|(thanks))\b.+\bping\s*bot\b/.test(
-        m.content.toLowerCase()
-      ) && sendMessage(m, 'heart <3')
-    }
+    match: /(\b(i\b.+\b(love|like|appreciate))|(thanks))\b.+\bping\s*bot\b/,
+    exec: (m: Message): void => sendMessage(m, 'heart <3')
   },
   {
     name: 'PingBot Hate',
-    probability: 1,
-    exec: (m: Message): void => {
-      ;/(\bi\b.+\b(hate|dislike)\b.+\bping\s*bot\b)|(\bping\s*bot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit|the worst))\b)|(\bfuck\b.+\bping\s*bot\b)/.test(
-        m.content.toLowerCase()
-      ) && sendMessage(m, ":'(")
-    }
+    match: /(\bi\b.+\b(hate|dislike)\b.+\bping\s*bot\b)|(\bping\s*bot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit|the worst))\b)|(\bfuck\b.+\bping\s*bot\b)/,
+    exec: (m: Message): void => sendMessage(m, ":'(")
   },
   {
     name: 'O O F',
-    probability: 1,
-    exec: (m: Message) =>
-      /\bo(\s*)o\1f\b/.test(m.content.toLowerCase()) && playOof(m)
+    match: /\bo(\s*)o\1f\b/,
+    exec: (m: Message) => playOof(m)
   },
   {
     name: 'OO OO AA AA',
-    probability: 1,
-    exec: (m: Message) =>
-      /oo oo aa aa/.test(m.content.toLowerCase()) && playMonkey(m)
+    match: /oo oo aa aa/,
+    exec: (m: Message) => playMonkey(m)
   },
   {
     name: 'Birthday',
-    probability: 1,
+    match: /\bbirthday\b/,
     exec: (m: Message): void => {
-      if (/\bbirthday\b/.test(m.content.toLowerCase())) {
-        const birthdateEmote = m.guild?.emojis.cache.find(e => /birthday/.test(e.name?.toLowerCase() || ''))
+      const birthdateEmote = m.guild?.emojis.cache.find(e => /birthday/.test(e.name?.toLowerCase() || ''))
 
-        if (birthdateEmote) {
-          m.react(birthdateEmote)
-        }
+      if (birthdateEmote) {
+        m.react(birthdateEmote)
       }
     }
   },
