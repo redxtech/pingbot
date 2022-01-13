@@ -76,3 +76,18 @@ export const getProb = async (guildId: Snowflake | undefined, name: string): Pro
     })
   })
 }
+
+// function to reset probabilities for a server
+export const resetProb = async (guildId: Snowflake | null): Promise<void> => {
+  // wrap with a promise
+  return new Promise((resolve, reject) => {
+    // remove all entries from the guild
+    db.remove({ guildId }, { multi: true }, (err) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve()
+      }
+    })
+  })
+}

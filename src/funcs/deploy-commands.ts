@@ -24,7 +24,10 @@ export const deployCommands = (clientId: Snowflake | undefined, guildId: Snowfla
 					.setDescription('1 in x probability')
 					.setMinValue(1)
 					.setRequired(true)
-			)
+			),
+		new SlashCommandBuilder()
+			.setName('pingbot-reset')
+			.setDescription('reset all probabilities to default')
 	].map(command => command.toJSON())
 
 	// create a rest request to the api

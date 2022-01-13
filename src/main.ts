@@ -6,7 +6,7 @@ import { sendMessage, should } from './utils'
 import { things } from './things'
 
 import { token } from '../config'
-import { getProb, setProb } from './db'
+import { getProb, resetProb, setProb } from './db'
 
 // create a client instance
 const client: Client = new Client({
@@ -87,7 +87,13 @@ client.on('interactionCreate', async interaction => {
 
     // respond to the message
 		await interaction.reply(`Probability updated - ${name}: ${value}`);
-	}
+	} else if (commandName === 'pingbot-reset') {
+    // remove entries from database
+    resetProb(interaction.guildId)
+
+    // respond to the message
+    await interaction.reply('Probabilities reset!')
+  }
 })
 
 // log in the client
