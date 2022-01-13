@@ -9,17 +9,17 @@ const db = new Datastore({
   autoload: true
 })
 
+// default values
+export const defaults = {
+  ping: 10000,
+  react: 100,
+  nickname: 1000,
+  dm: 1000,
+  rolled: 1000
+}
+
 // function to get probability, and fallback if one isn't provided by config
 const getDefaultProb = (n: string): number => {
-  // default values
-  const defaults = {
-    ping: 10000,
-    react: 100,
-    nickname: 1000,
-    dm: 1000,
-    rolled: 1000
-  }
-
   // return config value if it exists, return default value otherwise
   return Object.prototype.hasOwnProperty.call(defaults, n)
     // @ts-expect-error can't expect user to use proper type in config.ts
@@ -33,7 +33,7 @@ export const setProb = async (item: DBItem): Promise<boolean> => {
   return new Promise((resolve, reject) => {
     // upsert into the database the config option
     db.update(
-      { guildID: item.guildID, name: item.name },
+      { guildId: item.guildId, name: item.name },
       item,
       { upsert: true },
       err => {
@@ -49,11 +49,11 @@ export const setProb = async (item: DBItem): Promise<boolean> => {
 }
 
 // function to get probability from the db
-export const getProb = async (guildID: Snowflake | undefined, name: string): Promise<number> => {
+export const getProb = async (guildId: Snowflake | undefined, name: string): Promise<number> => {
   // wrap with a promise
   return new Promise((resolve, reject) => {
     // find a single item from a guild with a specific name
-    db.findOne({ guildID, name }, (err, doc) => {
+    db.findOne({ guildId, name }, (err, doc) => {
       if (err) {
         reject(err)
       } else {

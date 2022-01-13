@@ -1,9 +1,11 @@
-import { GuildEmoji, Message } from 'discord.js'
+import { GuildEmoji, Message, Permissions } from 'discord.js'
 
 import { generateNickname, sendMessage } from './utils'
 import { playMonkey, playOof } from './funcs/voice'
+import { deployCommands } from './funcs/deploy-commands'
 
 import { Thing } from './types'
+import { hostId } from '../config'
 
 // ideas:
 // - create/assign random coloured roles
@@ -88,5 +90,22 @@ export const things: Thing[] = [
     name: 'Rolled',
     probability: 'rolled',
     exec: (m: Message) => sendMessage(m, '<https://youtu.be/dQw4w9WgXcQ>')
+  },
+  {
+    name: 'Deploy Commands',
+    match: /!pingbot deploy/,
+    exec: async (m: Message): Promise<void> => {
+      if (m.member?.permissions.has(Permissions.FLAGS.MANAGE_GUILD) || m.author.id === hostId) {
+        try {
+          await deployCommands(m.client.user?.id, m.guildId)
+          m.react('✅')
+        } catch (err) {
+          console.error(err)
+          m.react('❌')
+        }
+      } else {
+          m.react('❌')
+      }
+    }
   }
 ]

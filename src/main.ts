@@ -6,7 +6,7 @@ import { sendMessage, should } from './utils'
 import { things } from './things'
 
 import { token } from '../config'
-import { getProb } from './db'
+import { getProb, setProb } from './db'
 
 // create a client instance
 const client: Client = new Client({
@@ -66,6 +66,28 @@ client.on('messageCreate', async (message: Message) => {
     // if the bot gets DMed, tell them that he has a gf
     sendMessage(message, 'get out of my dms, i have a gf', false)
   }
+})
+
+// command listener
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+
+	const { commandName } = interaction;
+
+	if (commandName === 'pingbot') {
+    // pull the values from the options
+    const name = interaction.options.get('name')?.value as string
+    const value = interaction.options.get('value')?.value as number
+
+    // and the guild ID
+    const guildId = interaction.guildId
+
+    // save the setting to the database
+    setProb({ guildId, name, value })
+
+    // respond to the message
+		await interaction.reply(`Probability updated - ${name}: ${value}`);
+	}
 })
 
 // log in the client

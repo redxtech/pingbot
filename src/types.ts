@@ -11,7 +11,7 @@ export interface Thing {
 }
 
 export interface DBItem {
-  guildID: Snowflake | undefined
+  guildId: Snowflake | undefined | null
   name: string
   value: number
 }
