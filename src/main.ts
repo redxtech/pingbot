@@ -86,13 +86,13 @@ client.on('interactionCreate', async interaction => {
     setProb({ guildId, name, value })
 
     // respond to the message
-		await interaction.reply(`Probability updated - ${name}: ${value}`);
+		await interaction.reply({ content: `Probability updated - ${name}: ${value}`, ephemeral: true });
 	} else if (commandName === 'pingbot-reset') {
     // remove entries from database
     resetProb(interaction.guildId)
 
     // respond to the message
-    await interaction.reply('Probabilities reset!')
+    await interaction.reply({ content: 'Probabilities reset!', ephemeral: true})
   }
 })
 
