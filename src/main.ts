@@ -5,7 +5,7 @@ import { Client, Intents, Message, Permissions } from 'discord.js'
 import { sendMessage, should } from './utils'
 import { things } from './things'
 
-import { token } from '../config'
+import { hostId, token } from '../config'
 import { defaults, getProb, resetProb, setProb } from './db'
 
 // create a client instance
@@ -69,13 +69,14 @@ client.on('messageCreate', async (message: Message) => {
 })
 
 // command listener
+// TODO move to own file
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
 	const { commandName } = interaction;
 
 	if (commandName === 'pingbot') {
-    if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD)) {
+    if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostId) {
       // pull the values from the options
       const name = interaction.options.get('name')?.value as string
       const value = interaction.options.get('value')?.value as number
@@ -90,7 +91,7 @@ client.on('interactionCreate', async interaction => {
       await interaction.reply({ content: `Probability updated - ${name}: ${value}.`, ephemeral: true });
     }
   } else if (commandName === 'pingbot-probabilities') {
-    if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD)) {
+    if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostId) {
       // get the guild ID
       const guildId = interaction.guildId
 
@@ -108,7 +109,7 @@ client.on('interactionCreate', async interaction => {
       interaction.reply({ content: probabilities.join('\n'), ephemeral: true })
     }
 	} else if (commandName === 'pingbot-reset') {
-    if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD)) {
+    if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostId) {
       // remove entries from database
       resetProb(interaction.guildId)
 
