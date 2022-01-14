@@ -52,7 +52,7 @@ export const setProb = async (item: DBItem): Promise<boolean> => {
 }
 
 // function to get probability from the db
-export const getProb = async (guildId: Snowflake | undefined, name: string): Promise<number> => {
+export const getProb = async (guildId: Snowflake | null | undefined, name: string): Promise<number> => {
   // wrap with a promise
   return new Promise((resolve, reject) => {
     // find a single item from a guild with a specific name

@@ -10,7 +10,7 @@ export const deployCommands = (clientId: Snowflake | undefined, guildId: Snowfla
 	const commands = [
 		new SlashCommandBuilder()
 			.setName('pingbot')
-			.setDescription('Configure pingbot')
+			.setDescription('configure pingbot')
 			.addStringOption(option => 
 				option
 					.setName('name')
@@ -25,6 +25,9 @@ export const deployCommands = (clientId: Snowflake | undefined, guildId: Snowfla
 					.setMinValue(1)
 					.setRequired(true)
 			),
+		new SlashCommandBuilder()
+			.setName('pingbot-probabilities')
+			.setDescription('show a list of all probabilities'),
 		new SlashCommandBuilder()
 			.setName('pingbot-reset')
 			.setDescription('reset all probabilities to default')
