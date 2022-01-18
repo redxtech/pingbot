@@ -45,7 +45,8 @@ export const things: Thing[] = [
         'you bitch.',
         'your mother was a hamster and your father smelt of elderberries!',
         'ratio + you\'re balding',
-        'let me guess, someone stole your sweetroll...'
+        'let me guess, someone stole your sweetroll...',
+        'ha! you just got pingbotted!'
       ]
 
       // send a random insult
@@ -99,7 +100,10 @@ export const things: Thing[] = [
       // list of options
       const opts = [
         '<https://youtu.be/dQw4w9WgXcQ>',
-        rick
+        '<https://youtu.be/ub82Xb1C8os>',
+        rick,
+        '<https://youtu.be/M5V_IXMewl4>',
+        '<https://u.nu/Noigp>'
       ]
 
       // send a random selection from the options
