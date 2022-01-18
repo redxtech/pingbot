@@ -17,6 +17,7 @@ export const defaults = {
   react: 100,
   nickname: 1000,
   dm: 1000,
+  chad: 1000,
   rolled: 1000
 }
 

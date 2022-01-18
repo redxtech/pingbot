@@ -6,6 +6,7 @@ import { deployCommands } from './funcs/deploy-commands'
 
 import { Thing } from './types'
 import { hostId } from '../config'
+import { chad } from './strings'
 
 // ideas:
 // - create/assign random coloured roles
@@ -85,6 +86,11 @@ export const things: Thing[] = [
         m.react(birthdateEmote)
       }
     }
+  },
+  {
+    name: 'Chad',
+    probability: 'chad',
+    exec: (m: Message) => sendMessage(m, chad)
   },
   {
     name: 'Rolled',
