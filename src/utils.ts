@@ -3,7 +3,7 @@ import { Message, MessageOptions, MessagePayload } from 'discord.js'
 // utility functions
 
 // random number generator
-const random = (upTo: number) => Math.floor(Math.random() * upTo) + 1
+const random = (upTo: number): number => Math.floor(Math.random() * upTo) + 1
 
 // probability tester
 export const should = (outOf: number): boolean => random(outOf) === 1

@@ -6,7 +6,7 @@ import { deployCommands } from './funcs/deploy-commands'
 
 import { Thing } from './types'
 import { hostId } from '../config'
-import { chad } from './strings'
+import { chad, rick } from './strings'
 
 // ideas:
 // - create/assign random coloured roles
@@ -95,7 +95,16 @@ export const things: Thing[] = [
   {
     name: 'Rolled',
     probability: 'rolled',
-    exec: (m: Message) => sendMessage(m, '<https://youtu.be/dQw4w9WgXcQ>')
+    exec: (m: Message): void => {
+      // list of options
+      const opts = [
+        '<https://youtu.be/dQw4w9WgXcQ>',
+        rick
+      ]
+
+      // send a random selection from the options
+      sendMessage(m, opts[Math.floor((Math.random() * opts.length))])
+    }
   },
   {
     name: 'Deploy Commands',
