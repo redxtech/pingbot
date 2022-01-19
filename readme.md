@@ -75,12 +75,12 @@ note: if you want the 'o o f' function to work in the voice channels, you need t
 
 ### personal recommendation
 when creating the bot user, you are most likely going to want to choose an image for pingbot to use as a profile
-picture. my personal favourite is shown below with two variations: normal and pinged (the better choice). i
-recommend these because they perfectly capture the essence of the bot, and they were the pinged variation was
+picture. my personal favourite is shown below with two variations: pinged (the better choice) and boring. i
+recommend these because they perfectly capture the essence of the bot, and the pinged variation was
 the server icon of the server this bot was written for.
 
 ![pingbot pinged][pinged]
-![pingbot][boring]
+![pingbot boring][boring]
 
 [pinged]: resources/pingbot.png
 [boring]: resources/pingbot-boring.png
