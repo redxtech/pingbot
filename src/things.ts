@@ -1,6 +1,6 @@
 import { GuildEmoji, Message, Permissions } from 'discord.js'
 
-import { generateNickname, sendMessage } from './utils'
+import { generateNickname, sendMessage, should } from './utils'
 import { playMonkey, playOof } from './funcs/voice'
 import { deployCommands } from './funcs/deploy-commands'
 
@@ -65,7 +65,7 @@ export const things: Thing[] = [
   {
     name: 'PingBot Hate',
     match: /(\bi\b.+\b(hate|dislike)\b.+\bping\s*bot\b)|(\bping\s*bot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit|the worst))\b)|(\bfuck\b.+\bping\s*bot\b)|(\bping\s*bot (suck|eat|munche)s dick|cock\b)/,
-    exec: (m: Message): void => sendMessage(m, ":'(")
+    exec: (m: Message): void => sendMessage(m, should(2) ? ":'(" : ")':")
   },
   {
     name: 'O O F',
