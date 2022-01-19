@@ -94,6 +94,11 @@ export const things: Thing[] = [
     exec: (m: Message) => sendMessage(m, chad)
   },
   {
+    name: 'Why',
+    probability: 'why',
+    exec: (m: Message) => sendMessage(m, 'https://i.imgur.com/1pihZlw.jpg')
+  },
+  {
     name: 'Rolled',
     probability: 'rolled',
     exec: (m: Message): void => {

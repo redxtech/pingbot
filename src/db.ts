@@ -11,14 +11,18 @@ const db = new Datastore({
   autoload: true
 })
 
+// one option for standard probability
+const base = 1000
+
 // default values
 export const defaults = {
-  ping: 10000,
-  react: 100,
-  nickname: 1000,
-  dm: 1000,
-  chad: 1000,
-  rolled: 1000
+  ping: base * 10,
+  react: base / 10,
+  nickname: base,
+  dm: base,
+  chad: base,
+  why: base,
+  rolled: base
 }
 
 // function to get probability, and fallback if one isn't provided by config
