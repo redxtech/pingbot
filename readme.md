@@ -5,28 +5,43 @@
 
 ### chance-based
 For each message that is sent, there is (configurable) chance that pingbot will:
- - ping @everyone (how it got it's name)
+ - ping @everyone (the original feature, how it got it's name)
  - react with a random emoji (often eerily in-tune to the mood of the message)
  - set your nickname to a string of random characters (most fun when on a server where users can't change their own
      nicknames)
- - send you an insult through dms
+ - send you a random insult through dms
+ - replying with an ascii chad face
  - one more secret bonus feature you'll have to wait and find out (spoilers in source code)
 
 ### pingbot love
 if you send a message that shows appreciation for pingbot (if it matches this regex:
-`/\bi\b.+\b(love|like|appreciate)\b.+\bpingbot\b/`), pingbot will respond with a heart to show it's appreciation of you.
+`/(\b(i\b.+\b(love|like|appreciate))|(thanks))\b.+\bping\s*bot\b/`), pingbot will respond with a heart to show it's appreciation of you.
 
 additionally, if you send a message that shows dislike for pingbot (if it matches this regex:
-`/(\bi\b.+\b(hate|dislike)\b.+\bpingbot\b)|(\bpingbot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit))\b)|(fuck.+pingbot)/`),
+`/(\bi\b.+\b(hate|dislike)\b.+\bping\s*bot\b)|(\bping\s*bot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit|the worst))\b)|(\bfuck\b.+\bping\s*bot\b)|(\bping\s*bot (suck|eat|munche)s dick|cock\b)/`),
 pingbot will respond with a sad face that will randomly switch between forwards and backwards.
 
 ### o o f
-if you send a message that contains the word 'o o f', pingbot will do one of two things:
+if you send a message that contains the word 'o o f' (any whitespace, including none), pingbot will do one of two things:
  - if you are in a voice channel, pingbot will join your voice channel, play the roblox *oof* sound, and leave.
  - if you are not in a voice channel, pingbot will simply reply 'o o f' instead.
+ - there is also a monkey sound that is played for 'oo oo aa aa'
+
+### birthday
+if you send a message that contains the word birthday, pingbot will react with the first emoji on the server
+with birthday in its name
 
 ### dms
 if you send a dm to pingbot, he will respond by telling you to get out of his dms, he has a girlfriend already.
+
+
+## configuration
+if you are a server owner, you (and anyone else with `MANAGER_SERVER` permissions) can use the `/pingbot <name> <value>`
+to set the probabilities of each chance-based feature (autocompleted). additionally, you can view the current probabilities
+and reset them to default with `/pingbot-probabilities` & `/pingbot-reset` resepectively.
+
+if you are are the host, you can set the default probabilities in the `config.ts` file, but the server oweners
+will be able to override this with the aforementioned command
 
 ## options
 all options and configuration is done through `config.ts`.
@@ -35,9 +50,11 @@ you need to specify a bot token with the `token` key. the bot will not run witho
 
 you can configure how often pingbot will perform it's actions (a one in `x` chance of performing the action) with these
 config keys:
- - `probabilities.ping` will affect how often pingbot pings everyone (default: `10000`).
- - `probabilities.react` will affect how often pingbot reacts to messages (default: `100`).
- - `probabilities.nickname` will affect how often pingbot changes someone's nickname (default: `1000`).
+ - `probabilities.ping` chance of pingbot pinging everyone (default: `10000`).
+ - `probabilities.react` chance of pingbot reacting to messages (default: `100`).
+ - `probabilities.nickname` chance of pingbot changeing someone's nickname (default: `1000`).
+ - `probabilities.dm` chance of pingbot sending you an insulting dm (defaults: `1000`)
+ - `probabilities.chad` chance of pingbot responding with the chad face (default: `1000`)
 
 ## setup
 setup is simple:
@@ -62,11 +79,11 @@ picture. my personal favourite is shown below with two variations: normal and pi
 recommend these because they perfectly capture the essence of the bot, and they were the pinged variation was
 the server icon of the server this bot was written for.
 
-![pingbot][normal]
 ![pingbot pinged][pinged]
+![pingbot][boring]
 
-[normal]: resources/pingbot.png
-[pinged]: resources/pingbot_pinged.png
+[pinged]: resources/pingbot.png
+[boring]: resources/pingbot-boring.png
 
 ## author
 **pingbot** © [gabe dunn](https://github.com/redxtech), released under the [MIT](./license.md) license.
