@@ -1,6 +1,7 @@
 import { Interaction, Permissions } from 'discord.js'
 import { hostId } from '../config';
 import { defaults, getProb, resetProb, setProb } from './db';
+import { upCase } from './utils';
 
 // function to handle slash commands
 export const slashHandler = async (interaction: Interaction): Promise<void> => {
@@ -53,7 +54,7 @@ export const slashHandler = async (interaction: Interaction): Promise<void> => {
         }
 
         // respond to the message
-        interaction.reply({ content: probabilities.join('\n'), ephemeral: true })
+        interaction.reply({ content: probabilities.map(p => upCase(p)).join('\n') })
       }
     }
   }
