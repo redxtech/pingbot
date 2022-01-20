@@ -89,14 +89,18 @@ export const things: Thing[] = [
     }
   },
   {
-    name: 'Chad',
-    probability: 'chad',
-    exec: (m: Message) => sendMessage(m, chad)
-  },
-  {
-    name: 'Why',
-    probability: 'why',
-    exec: (m: Message) => sendMessage(m, 'https://i.imgur.com/1pihZlw.jpg')
+    name: 'Chance',
+    probability: 'chance',
+    exec: (m: Message): void => {
+      // list of options
+      const opts = [
+        chad,
+        'https://i.imgur.com/1pihZlw.jpg'
+      ]
+
+      // send a random selection from the options
+      sendMessage(m, opts[Math.floor((Math.random() * opts.length))])
+    }
   },
   {
     name: 'Rolled',

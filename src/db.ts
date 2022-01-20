@@ -20,8 +20,7 @@ export const defaults = {
   react: base / 10,
   nickname: base,
   dm: base,
-  chad: base,
-  why: base,
+  chance: base,
   rolled: base
 }
 
