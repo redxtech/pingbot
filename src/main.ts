@@ -1,12 +1,14 @@
 import chalk from 'chalk'
 import dayjs from 'dayjs'
-import { Client, Intents, Message, Permissions } from 'discord.js'
+import { Client, Intents, Message } from 'discord.js'
 
+import { getProb } from './db'
 import { sendMessage, should } from './utils'
 import { things } from './things'
+import { slashHandler } from './slash-commands'
 
-import { hostId, token } from '../config'
-import { defaults, getProb, resetProb, setProb } from './db'
+import { token } from '../config'
+
 
 // create a client instance
 const client: Client = new Client({
@@ -69,55 +71,7 @@ client.on('messageCreate', async (message: Message) => {
 })
 
 // command listener
-// TODO move to own file
-client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
-
-	const { commandName } = interaction;
-
-	if (commandName === 'pingbot') {
-    if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostId) {
-      // pull the values from the options
-      const name = interaction.options.get('name')?.value as string
-      const value = interaction.options.get('value')?.value as number
-
-      // and the guild ID
-      const guildId = interaction.guildId
-
-      // save the setting to the database
-      setProb({ guildId, name, value })
-
-      // respond to the message
-      await interaction.reply({ content: `Probability updated - ${name}: ${value}.`, ephemeral: true });
-    }
-  } else if (commandName === 'pingbot-probabilities') {
-    if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostId) {
-      // get the guild ID
-      const guildId = interaction.guildId
-
-      //  grab all the values from the db
-      const keys = Object.keys(defaults)
-        .filter(p => p !== 'rolled')
-
-      // accumulate probabilities into an array
-      const probabilities = []
-      for (const k of keys) {
-        probabilities.push(`${k}: ${await getProb(guildId, k)}`)
-      }
-
-      // respond to the message
-      interaction.reply({ content: probabilities.join('\n'), ephemeral: true })
-    }
-	} else if (commandName === 'pingbot-reset') {
-    if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostId) {
-      // remove entries from database
-      resetProb(interaction.guildId)
-
-      // respond to the message
-      await interaction.reply({ content: 'Probabilities reset!', ephemeral: true})
-    }
-  }
-})
+client.on('interactionCreate', slashHandler)
 
 // log in the client
 client.login(token)

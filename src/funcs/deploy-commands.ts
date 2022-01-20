@@ -10,27 +10,31 @@ export const deployCommands = (clientId: Snowflake | undefined, guildId: Snowfla
 	const commands = [
 		new SlashCommandBuilder()
 			.setName('pingbot')
-			.setDescription('configure pingbot')
-			.addStringOption(option => 
-				option
-					.setName('name')
-					.setDescription('the name of the probability to set')
-					.addChoices(Object.keys(defaults).filter(n => n !== 'rolled').map(k => [k, k]))
-					.setRequired(true)
-			)
-			.addIntegerOption(option =>
-				option
-					.setName('value')
-					.setDescription('1 in x probability')
-					.setMinValue(1)
-					.setRequired(true)
-			),
-		new SlashCommandBuilder()
-			.setName('pingbot-probabilities')
-			.setDescription('show a list of all probabilities'),
-		new SlashCommandBuilder()
-			.setName('pingbot-reset')
-			.setDescription('reset all probabilities to default')
+			.setDescription('configure and get information about pingbot')
+			.addSubcommand(subcommand => 
+				subcommand
+					.setName('config')
+					.setDescription('configure a pingbot')
+					.addStringOption(option => 
+						option
+							.setName('name')
+							.setDescription('the name of the probability to set')
+							.addChoices(Object.keys(defaults).map(k => [k, k]))
+							.setRequired(true))
+					.addIntegerOption(option =>
+						option
+							.setName('value')
+							.setDescription('1 in x probability')
+							.setMinValue(1)
+							.setRequired(true)))
+			.addSubcommand(subcommand =>
+				subcommand
+					.setName('reset')
+					.setDescription('reset all probabilities to default'))
+			.addSubcommand(subcommand =>
+				subcommand
+					.setName('show')
+					.setDescription('show currently configured probabilities'))
 	].map(command => command.toJSON())
 
 	// create a rest request to the api
