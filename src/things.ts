@@ -6,7 +6,7 @@ import { deployCommands } from './funcs/deploy-commands'
 
 import { Thing } from './types'
 import { hostId } from '../config'
-import { chad, rick } from './strings'
+import { chad, rick, rock } from './strings'
 
 // ideas:
 // - create/assign random coloured roles
@@ -59,7 +59,7 @@ export const things: Thing[] = [
   },
   {
     name: 'PingBot Love',
-    match: /(\b(i\b.+\b(love|like|appreciate))|(thanks))\b.+\bping\s*bot\b/,
+    match: /(\b((i|we)\b.+\b(love|like|appreciate))|(thanks))\b.+\bping\s*bot\b/,
     exec: (m: Message): void => sendMessage(m, 'heart <3')
   },
   {
@@ -95,7 +95,8 @@ export const things: Thing[] = [
       // list of options
       const opts = [
         chad,
-        'https://i.imgur.com/1pihZlw.jpg'
+        'https://i.imgur.com/1pihZlw.jpg',
+				rock
       ]
 
       // send a random selection from the options
