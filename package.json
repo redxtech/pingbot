@@ -13,7 +13,10 @@
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "lint:prettier": "prettier --check src/**/*.ts",
-    "lint:prettier:fix": "prettier --write src/**/*.ts"
+    "lint:prettier:fix": "prettier --write src/**/*.ts",
+    "pm2": "pm2 start ecosystem.config.js",
+    "pm2:restart": "pm2 restart ecosystem.config.js",
+    "pm2:logs": "pm2 logs --lines 20 pingbot"
   },
   "dependencies": {
     "@discordjs/builders": "^0.11.0",
