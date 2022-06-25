@@ -95,10 +95,12 @@ export const things: Thing[] = [
     exec: (m: Message): void => {
       // list of options
       const opts = [
-        chad,
-        'https://i.imgur.com/1pihZlw.jpg',
+				chad,
+				'https://i.imgur.com/1pihZlw.jpg', // you pass butter
 				rock,
-				'https://i.imgur.com/sB6Djce.png'
+				'https://i.imgur.com/sB6Djce.png', // christian server
+				'https://i.imgur.com/6pwYUEz.jpg', // doubt
+				'https://i.imgur.com/4jS5pbH.png' // effect on people
       ]
 
       // send a random selection from the options
