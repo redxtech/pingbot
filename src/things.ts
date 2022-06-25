@@ -126,20 +126,30 @@ export const things: Thing[] = [
 		name: 'GodWords',
 		match: /!pingbot words/,
 		exec: async (m: Message): Promise<void> => {
-			// generate some god words
-			const godWords = execSync('echo "$(shuf -n 10 /usr/share/dict/words --random-source=/dev/urandom | tr \'\n\' \' \')"')
-			sendMessage(m, godWords.toString())
+			try {
+				// generate some god words
+				const godWords = execSync('echo "$(shuf -n 10 /usr/share/dict/words --random-source=/dev/urandom | tr \'\n\' \' \')"')
+				sendMessage(m, godWords.toString())
+			} catch (err) {
+				sendMessage(m, 'couldn\'t generate god words')
+				console.error(err)
+			}
 		}
 	},
 	{
 		name: 'GodPassage',
 		match: /!pingbot passage/,
 		exec: async (m: Message): Promise<void> => {
-			// generate a god passage
-			const godWords = execSync(
-				`${__dirname}/funcs/GodPassage.sh`
-			)
-			sendMessage(m, godWords.toString())
+			try {
+				// generate a god passage
+				const godWords = execSync(
+					`${__dirname}/funcs/GodPassage.sh`
+				)
+				sendMessage(m, godWords.toString())
+			} catch (err) {
+				sendMessage(m, 'couldn\'t generate god passage')
+				console.error(err)
+			}
 		}
 	},
   {
