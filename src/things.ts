@@ -1,3 +1,4 @@
+import { execSync } from 'child_process'
 import { GuildEmoji, Message, Permissions } from 'discord.js'
 
 import { generateNickname, sendMessage, should } from './utils'
@@ -121,6 +122,26 @@ export const things: Thing[] = [
       sendMessage(m, opts[Math.floor((Math.random() * opts.length))])
     }
   },
+	{
+		name: 'GodWords',
+		match: /!pingbot words/,
+		exec: async (m: Message): Promise<void> => {
+			// generate some god words
+			const godWords = execSync('echo "$(shuf -n 10 /usr/share/dict/words --random-source=/dev/urandom | tr \'\n\' \' \')"')
+			sendMessage(m, godWords.toString())
+		}
+	},
+	{
+		name: 'GodPassage',
+		match: /!pingbot passage/,
+		exec: async (m: Message): Promise<void> => {
+			// generate a god passage
+			const godWords = execSync(
+				`${__dirname}/funcs/GodPassage.sh`
+			)
+			sendMessage(m, godWords.toString())
+		}
+	},
   {
     name: 'Deploy Commands',
     match: /!pingbot deploy/,

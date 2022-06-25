@@ -9,6 +9,7 @@
   "scripts": {
     "start": "node ./dist/src/main.js",
     "build": "tsc",
+    "postbuild": "cp ./src/funcs/GodPassage.sh ./dist/src/funcs/",
     "dev": "nodemon --exec ts-node ./src/main.ts",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",

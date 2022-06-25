@@ -4,6 +4,7 @@ config.ts
 dist
 tags
 probabilities.nedb
+Bible.TXT
 
 # Logs
 logs
