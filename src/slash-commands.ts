@@ -1,5 +1,5 @@
 import { Interaction, Permissions } from 'discord.js'
-import { hostId } from '../config';
+import { hostId, clientID } from '../config';
 import { defaults, getProb, resetProb, setProb } from './db';
 import { upCase } from './utils';
 
@@ -56,6 +56,11 @@ export const slashHandler = async (interaction: Interaction): Promise<void> => {
         // respond to the message
         interaction.reply({ content: probabilities.map(p => upCase(p)).join('\n') })
       }
-    }
+    } else if (subCommandName === 'invite') {
+			interaction.reply({
+				content: `https://discord.com/api/oauth2/authorize?client_id=${clientID}&permissions=0&scope=bot%20applications.commands`,
+				ephemeral: true
+			})
+		}
   }
 }

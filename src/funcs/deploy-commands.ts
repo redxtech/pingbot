@@ -35,6 +35,10 @@ export const deployCommands = (clientId: Snowflake | undefined, guildId: Snowfla
 				subcommand
 					.setName('show')
 					.setDescription('show currently configured probabilities'))
+			.addSubcommand(subcommand =>
+				subcommand
+					.setName('invite')
+					.setDescription('invite pingbot to your own server !'))
 	].map(command => command.toJSON())
 
 	// create a rest request to the api
