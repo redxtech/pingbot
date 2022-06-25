@@ -54,11 +54,11 @@ export const slashHandler = async (interaction: Interaction): Promise<void> => {
         }
 
         // respond to the message
-        interaction.reply({ content: probabilities.map(p => upCase(p)).join('\n') })
+        interaction.reply({ content: `**Probabilities for ${interaction.guild?.name}:**\n` + probabilities.map(p => upCase(p)).join('\n'), ephemeral: true })
       }
     } else if (subCommandName === 'invite') {
 			interaction.reply({
-				content: `https://discord.com/api/oauth2/authorize?client_id=${clientID}&permissions=0&scope=bot%20applications.commands`,
+				content: `https://discord.com/api/oauth2/authorize?client_id=${clientID}&permissions=8&scope=bot%20applications.commands`,
 				ephemeral: true
 			})
 		}

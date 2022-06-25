@@ -96,7 +96,8 @@ export const things: Thing[] = [
       const opts = [
         chad,
         'https://i.imgur.com/1pihZlw.jpg',
-				rock
+				rock,
+				'https://i.imgur.com/sB6Djce.png'
       ]
 
       // send a random selection from the options
