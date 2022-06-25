@@ -10,7 +10,7 @@ For each message that is sent, there is (configurable) chance that pingbot will:
  - set your nickname to a string of random characters (most fun when on a server where users can't change their own
      nicknames)
  - send you a random insult through dms
- - replying with an ascii chad face
+ - replying with an ascii chad face or rock look
  - one more secret bonus feature you'll have to wait and find out (spoilers in source code)
 
 ### pingbot love
@@ -26,6 +26,10 @@ if you send a message that contains the word 'o o f' (any whitespace, including 
  - if you are in a voice channel, pingbot will join your voice channel, play the roblox *oof* sound, and leave.
  - if you are not in a voice channel, pingbot will simply reply 'o o f' instead.
  - there is also a monkey sound that is played for 'oo oo aa aa'
+
+## god words & god passage
+if you send the message `!pingbot words` or `!pingbot passage`, it will generate a ten random words and bible
+passage respectively, a tribute to templeOS
 
 ### birthday
 if you send a message that contains the word birthday, pingbot will react with the first emoji on the server
