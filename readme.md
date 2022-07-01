@@ -4,40 +4,42 @@
 ## features
 
 ### chance-based
-For each message that is sent, there is (configurable) chance that pingbot will:
+for each message that is sent, there is (configurable) chance that pingbot will:
  - ping @everyone (the original feature, how it got it's name)
  - react with a random emoji (often eerily in-tune to the mood of the message)
  - set your nickname to a string of random characters (most fun when on a server where users can't change their own
      nicknames)
  - send you a random insult through dms
  - replying with an ascii chad face or rock look
- - one more secret bonus feature you'll have to wait and find out (spoilers in source code)
+ - one more secret bonus feature that i'm never gonna give up any hints about (spoilers in `src/things.ts`)
 
-### pingbot love
-if you send a message that shows appreciation for pingbot (if it matches this regex:
-`/(\b(i\b.+\b(love|like|appreciate))|(thanks))\b.+\bping\s*bot\b/`), pingbot will respond with a heart to show it's appreciation of you.
-
-additionally, if you send a message that shows dislike for pingbot (if it matches this regex:
-`/(\bi\b.+\b(hate|dislike)\b.+\bping\s*bot\b)|(\bping\s*bot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit|the worst))\b)|(\bfuck\b.+\bping\s*bot\b)|(\bping\s*bot (suck|eat|munche)s dick|cock\b)/`),
-pingbot will respond with a sad face that will randomly switch between forwards and backwards.
-
-### o o f
-if you send a message that contains the word 'o o f' (any whitespace, including none), pingbot will do one of two things:
- - if you are in a voice channel, pingbot will join your voice channel, play the roblox *oof* sound, and leave.
- - if you are not in a voice channel, pingbot will simply reply 'o o f' instead.
- - there is also a monkey sound that is played for 'oo oo aa aa'
-
-## god words & god passage
-if you send the message `!pingbot words` or `!pingbot passage`, it will generate a ten random words and bible
-passage respectively, a tribute to templeOS
-
-### birthday
-if you send a message that contains the word birthday, pingbot will react with the first emoji on the server
-with birthday in its name
+### match based
+some other features are triggered by the content of the message
+ - **pingbot love:** if you send a message that shows appreciation for pingbot (if it matches this regex:
+		`/(\b(i\b.+\b(love|like|appreciate))|(thanks))\b.+\bping\s*bot\b/`), pingbot will respond with a heart
+		to show its appreciation of you.
+ - **pingbot hate:** if you send a message that shows dislike for pingbot (if it matches this regex:
+ 		`/(\bi\b.+\b(hate|dislike)\b.+\bping\s*bot\b)|(\bping\s*bot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit|the worst))\b)|(\bfuck\b.+\bping\s*bot\b)|(\bping\s*bot (suck|eat|munche)s dick|cock\b)/`),
+		pingbot will respond with a sad face that will randomly switch between forwards and backwards.
+ - **o o f:** if you send a message that contains the word 'o o f' (any whitespace, including none),
+ 		pingbot will do one of two things: 1) if you are in a voice channel, pingbot will join your voice
+		channel, play the roblox *oof* sound, and leave. 2) if you are not in a voice channel, pingbot
+		will simply reply 'o o f' instead.
+ - **oo oo aa aa:** there is also a monkey sound that is played for 'oo oo aa aa'
+ - **birthday:** if you send a message that contains the word birthday, pingbot will react with
+ 		the first emoji on the server with birthday in its name
+ - **no u:** pingbot will do the ol' uno reverse if you call him gay
 
 ### dms
 if you send a dm to pingbot, he will respond by telling you to get out of his dms, he has a girlfriend already.
 
+### god words & god passage
+if you send the message `!pingbot words` or `!pingbot passage`, it will generate a ten random words and bible
+passage respectively, a tribute to templeOS
+
+## invite
+to get an invite link for the current instance of the bot, run `/pingbot invite` and it will give you an
+invite link
 
 ## configuration
 if you are a server owner, you (and anyone else with `MANAGER_SERVER` permissions) can use the `/pingbot <name> <value>`
@@ -71,6 +73,11 @@ setup is simple:
  5. add your desired options to the `config.ts` file.
  6. run the bot with `yarn start` (or `npm run start`). alternatively you can run it with `node ./src/index.js`.
  7. enjoy!
+
+ if you prefer docker:
+ 1. follow steps 1-5 of normal setup
+ 2. run the bot with docker compose up --build
+ 3. enjoy!
 
 [1]: https://www.howtogeek.com/364225/how-to-make-your-own-discord-bot/
 [2]: https://nodejs.org
