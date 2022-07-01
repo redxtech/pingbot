@@ -22,7 +22,7 @@ export const things: Thing[] = [
   {
     name: 'React',
     probability: 'react',
-    exec: (m: Message) => m.react(m.guild?.emojis.cache.random() as GuildEmoji)
+    exec: (m: Message) => m.react(m.guild?.emojis.cache.random() as GuildEmoji || ':x:')
   },
   {
     name: 'Nickname',
