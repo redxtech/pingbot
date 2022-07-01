@@ -175,7 +175,7 @@ export const things: Thing[] = [
 		name: 'Server List',
 		match: /!pingbot servers/,
 		exec: (m: Message) => m.member?.user.id === hostId
-			? sendMessage(m, ['**server list:**', ...m.client.guilds.cache.map(g => g.name)].join('\n'))
+			? sendMessage(m, ['**server list:**', ...m.client.guilds.cache.map(g => g.name).map(g => `• ${g}`)].join('\n'))
 			: m.react('❌')
 	},
   {
