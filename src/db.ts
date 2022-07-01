@@ -7,7 +7,7 @@ import Datastore = require('nedb')
 
 // create object to interact with db
 const db = new Datastore({
-  filename: 'probabilities.nedb',
+  filename: 'db/probabilities.nedb',
   autoload: true
 })
 

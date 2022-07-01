@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  pingbot:
+    build: .
+    volumes:
+      - db:/usr/src/bot/db
+volumes:
+  db:
+    external: true
