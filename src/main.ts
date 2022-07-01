@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 import { Client, Intents, Message } from 'discord.js'
 
 import { getProb } from './db'
-import { sendMessage, should } from './utils'
+import { selectFrom, sendMessage, should } from './utils'
 import { things } from './things'
 import { slashHandler } from './slash-commands'
 
@@ -65,8 +65,12 @@ client.on('messageCreate', async (message: Message) => {
     message.channel.type === 'DM' &&
     message.author.id !== client.user?.id
   ) {
-    // if the bot gets DMed, tell them that he has a gf
-    sendMessage(message, 'get out of my dms, i have a gf', false)
+    // if the bot gets DMed, respond with stuff
+		const replies = [
+			'get out of my dms, i have a gf',
+			'that\'s not what your mom said last night'
+		]
+    sendMessage(message, selectFrom(replies), false)
   }
 })
 

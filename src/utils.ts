@@ -11,6 +11,9 @@ export const should = (outOf: number): boolean => random(outOf) === 1
 // capitalize the first letter
 export const upCase = (str: string): string => `${str[0].toUpperCase()}${str.slice(1)}`
 
+// select random element
+export const selectFrom = (arr: string[]): string => arr[Math.floor((Math.random() * arr.length))]
+
 // generate a random string of characters to use as a nickname
 export const generateNickname = (): string => {
   // initialize empty array to store the name in

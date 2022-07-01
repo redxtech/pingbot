@@ -31,7 +31,9 @@ some other features are triggered by the content of the message
  - **no u:** pingbot will do the ol' uno reverse if you call him gay
 
 ### dms
-if you send a dm to pingbot, he will respond by telling you to get out of his dms, he has a girlfriend already.
+if you send a dm to pingbot, he will respond by choosing from an array of replies, including
+telling you to get out of his dms, he has a girlfriend already, and that's not what your mom
+said last night
 
 ### god words & god passage
 if you send the message `!pingbot words` or `!pingbot passage`, it will generate a ten random words and bible

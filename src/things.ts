@@ -1,7 +1,7 @@
 import { execSync } from 'child_process'
 import { GuildEmoji, Message, Permissions } from 'discord.js'
 
-import { generateNickname, sendMessage, should } from './utils'
+import { generateNickname, selectFrom, sendMessage, should } from './utils'
 import { playMonkey, playOof } from './funcs/voice'
 import { deployCommands } from './funcs/deploy-commands'
 
@@ -51,7 +51,7 @@ export const things: Thing[] = [
       ]
 
       // send a random insult
-      m.author.send(insults[Math.floor((Math.random() * insults.length))])
+      m.author.send(selectFrom(insults))
       .then()
       .catch((err: Error) => {
         console.error(`Couldn't send DM to ${m.member?.user.tag}: ${err}`)
@@ -103,7 +103,7 @@ export const things: Thing[] = [
 				'https://i.imgur.com/aEBqGuU.jpg',
 				'https://i.imgur.com/AoETXik.jpg'
 			]
-			sendMessage(m, replies[Math.floor((Math.random() * replies.length))])
+			sendMessage(m, selectFrom(replies))
 		}
 	},
   {
@@ -121,7 +121,7 @@ export const things: Thing[] = [
       ]
 
       // send a random selection from the options
-      sendMessage(m, opts[Math.floor((Math.random() * opts.length))])
+      sendMessage(m, selectFrom(opts))
     }
   },
   {
@@ -138,7 +138,7 @@ export const things: Thing[] = [
       ]
 
       // send a random selection from the options
-      sendMessage(m, opts[Math.floor((Math.random() * opts.length))])
+      sendMessage(m, selectFrom(opts))
     }
   },
 	{
