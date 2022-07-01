@@ -2,7 +2,7 @@ import { Interaction, Permissions } from 'discord.js'
 import { EmbedBuilder } from '@discordjs/builders'
 import { hostId, clientID } from '../config';
 import { defaults, getProb, resetProb, setProb } from './db';
-import { upCase } from './utils';
+import { getMsDiff, upCase } from './utils';
 
 // function to handle slash commands
 export const slashHandler = async (interaction: Interaction): Promise<void> => {
@@ -69,7 +69,7 @@ export const slashHandler = async (interaction: Interaction): Promise<void> => {
 					{ name: 'author', value: '<@170451883134156800>'},
 					{ name: 'gh repo', value: 'https://github.com/redxtech/devmod' }
 				])
-				.setFooter({ text: `uptime: ${interaction.client.uptime}` })
+				.setFooter({ text: `uptime: ${getMsDiff(interaction.client.uptime || 0)}` })
 				.setTimestamp()
 				.toJSON()
 

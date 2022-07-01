@@ -50,3 +50,29 @@ export const sendMessage = (m: Message, content: string | MessageOptions | Messa
   }, 750)
 }
 
+// convert ms to date difference
+export const getMsDiff = (difference: number): string => {
+	const parts = {
+		d: Math.floor(difference / (1000 * 60 * 60 * 24)),
+		h: Math.floor((difference / (1000 * 60 * 60)) % 24),
+		m: Math.floor((difference / 1000 / 60) % 60),
+		s: Math.floor((difference / 1000) % 60)
+	}
+	const segments = []
+	for (const key of Object.keys(parts)) {
+		// @ts-expect-error cant fix rn
+		const part = `${parts[key]
+			.toString()
+			.padStart(key === 'd' ? 0 : 2, '0')}${key}`
+		// @ts-expect-error cant fix rn
+		if (parts[key]) {
+			segments.push(part)
+		} else {
+			if (segments.length !== 0) {
+				segments.push(part)
+			}
+		}
+	}
+	return segments.join(' ')
+}
+
