@@ -65,7 +65,7 @@ export const things: Thing[] = [
   },
   {
     name: 'PingBot Hate',
-    match: /(\bi\b.+\b(hate|dislike)\b.+\bping\s*bot\b)|(\bping\s*bot\b.+\b(sucks|(is|ur|your|you're|youre)\b.+\b(bad|garbage|trash|ass|shit|the worst))\b)|(\bfuck\b.+\bping\s*bot\b)|(\bping\s*bot (suck|eat|munche)s (dick|cock)\b)/,
+    match: /(\bi\b.+\b(hate|dislike)\b.+\bping\s*bot\b)|(\bfuck\b.+\bping\s*bot\b)|(\bping\s*bot (suck|eat|munche)s (dick|cock)\b)/,
     exec: (m: Message): void => sendMessage(m, should(2) ? ":'(" : ")':")
   },
   {
@@ -91,7 +91,7 @@ export const things: Thing[] = [
   },
 	{
 		name: 'No U',
-		match: /\bpingbot is gay\b/,
+		match: /\bping\s*bot\b.+\b(is|you're|youre|your|ur)\b.+\b(gay|bad|garbage|trash|ass|shit|the\b.+\bworst)\b/,
 		exec: (m: Message): void => {
 			const replies = [
 				nou,

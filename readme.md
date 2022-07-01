@@ -16,10 +16,10 @@ for each message that is sent, there is (configurable) chance that pingbot will:
 ### match based
 some other features are triggered by the content of the message
  - **pingbot love:** if you send a message that shows appreciation for pingbot (if it matches this regex:
-		`/(\b(i\b.+\b(love|like|appreciate))|(thanks))\b.+\bping\s*bot\b/`), pingbot will respond with a heart
-		to show its appreciation of you.
+		`/(\b((i|we)\b.+\b(love|like|appreciate))|(thanks))\b.+\bping\s*bot\b/`), pingbot will respond with
+		a heart to show its appreciation of you.
  - **pingbot hate:** if you send a message that shows dislike for pingbot (if it matches this regex:
- 		`/(\bi\b.+\b(hate|dislike)\b.+\bping\s*bot\b)|(\bping\s*bot\b.+\b(sucks|is\b.+\b(bad|garbage|trash|ass|shit|the worst))\b)|(\bfuck\b.+\bping\s*bot\b)|(\bping\s*bot (suck|eat|munche)s dick|cock\b)/`),
+ 		`/(\bi\b.+\b(hate|dislike)\b.+\bping\s*bot\b)|(\bfuck\b.+\bping\s*bot\b)|(\bping\s*bot (suck|eat|munche)s (dick|cock)\b)/`),
 		pingbot will respond with a sad face that will randomly switch between forwards and backwards.
  - **o o f:** if you send a message that contains the word 'o o f' (any whitespace, including none),
  		pingbot will do one of two things: 1) if you are in a voice channel, pingbot will join your voice
