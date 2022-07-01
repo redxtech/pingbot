@@ -3,7 +3,9 @@ FROM node:latest
 ENV DEBIAN_FRONTEND="noninteractive"
 
 RUN apt-get update && \
-		apt-get install -y wcanadian
+		apt-get install -y \
+			ffmpeg \
+			wcanadian
 
 
 # Create the bot's directory
