@@ -65,7 +65,7 @@ export const slashHandler = async (interaction: Interaction): Promise<void> => {
 				.setDescription('pingbot is the em*bot*iment of a shitpost.\nyou have been graced with his presence.')
 				.addFields(...[
 					{ name: 'servers', value: interaction.client.guilds.cache.size.toString()},
-					{ name: 'users', value: interaction.client.users.cache.filter(user => !user.bot).size.toString()},
+					{ name: 'users', value: interaction.client.guilds.cache.map(g => g.memberCount).reduce((s, v) => s + v).toString()},
 					{ name: 'author', value: '<@170451883134156800>'},
 					{ name: 'gh repo', value: 'https://github.com/redxtech/devmod' }
 				])
