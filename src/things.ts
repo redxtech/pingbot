@@ -7,7 +7,7 @@ import { deployCommands } from './funcs/deploy-commands'
 
 import { Thing } from './types'
 import { hostId } from '../config'
-import { chad, rick, rock } from './strings'
+import { chad, nou, rick, rock } from './strings'
 
 // ideas:
 // - create/assign random coloured roles
@@ -89,6 +89,23 @@ export const things: Thing[] = [
       }
     }
   },
+	{
+		name: 'No U',
+		match: /\bpingbot is gay\b/,
+		exec: (m: Message): void => {
+			const replies = [
+				nou,
+				'https://i.imgur.com/t1M9ffQ.gif',
+				'https://i.imgur.com/b3Yz5Qj.png',
+				'https://i.imgur.com/wa24eIx.gif',
+				'https://i.imgur.com/ejWUm1R.jpg',
+				'https://i.imgur.com/UMyQx52.png',
+				'https://i.imgur.com/aEBqGuU.jpg',
+				'https://i.imgur.com/AoETXik.jpg'
+			]
+			sendMessage(m, replies[Math.floor((Math.random() * replies.length))])
+		}
+	},
   {
     name: 'Chance',
     probability: 'chance',
