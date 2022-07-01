@@ -1,4 +1,5 @@
 import { Interaction, Permissions } from 'discord.js'
+import { EmbedBuilder } from '@discordjs/builders'
 import { hostId, clientID } from '../config';
 import { defaults, getProb, resetProb, setProb } from './db';
 import { upCase } from './utils';
@@ -56,6 +57,25 @@ export const slashHandler = async (interaction: Interaction): Promise<void> => {
         // respond to the message
         interaction.reply({ content: `**Probabilities for ${interaction.guild?.name}:**\n` + probabilities.map(p => upCase(p)).join('\n'), ephemeral: true })
       }
+		} else if (subCommandName === 'info') {
+			const embed = new EmbedBuilder()
+				.setColor(0x5865F2)
+				.setTitle('about pingbot - click to invite')
+				.setURL(`https://discord.com/api/oauth2/authorize?client_id=${clientID}&permissions=8&scope=bot%20applications.commands`)
+				.setDescription('pingbot is the em*bot*iment of a shitpost.\nyou have been graced with his presence.')
+				.addFields(...[
+					{ name: 'servers', value: interaction.client.guilds.cache.size.toString()},
+					{ name: 'users', value: interaction.client.users.cache.filter(user => !user.bot).size.toString()},
+					{ name: 'author', value: '<@170451883134156800>'},
+					{ name: 'gh repo', value: 'https://github.com/redxtech/devmod' }
+				])
+				.setFooter({ text: `uptime: ${interaction.client.uptime}` })
+				.setTimestamp()
+				.toJSON()
+
+			interaction.reply({
+				embeds: [embed]
+			})
     } else if (subCommandName === 'invite') {
 			interaction.reply({
 				content: `https://discord.com/api/oauth2/authorize?client_id=${clientID}&permissions=8&scope=bot%20applications.commands`,

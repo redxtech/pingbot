@@ -19,7 +19,7 @@ export const deployCommands = (clientId: Snowflake | undefined, guildId: Snowfla
 						option
 							.setName('name')
 							.setDescription('the name of the probability to set')
-							.addChoices(Object.keys(defaults).map(k => [k, k]))
+							.addChoices(...Object.keys(defaults).map(k => { return { name: k, value: k } }))
 							.setRequired(true))
 					.addIntegerOption(option =>
 						option
@@ -35,6 +35,10 @@ export const deployCommands = (clientId: Snowflake | undefined, guildId: Snowfla
 				subcommand
 					.setName('show')
 					.setDescription('show currently configured probabilities'))
+			.addSubcommand(subcommand =>
+				subcommand
+					.setName('info')
+					.setDescription('shows some info about pingbot'))
 			.addSubcommand(subcommand =>
 				subcommand
 					.setName('invite')
