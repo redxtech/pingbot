@@ -68,7 +68,17 @@ client.on('messageCreate', async (message: Message) => {
     // if the bot gets DMed, respond with stuff
 		const replies = [
 			'get out of my dms, i have a gf',
-			'that\'s not what your mom said last night'
+			"that's not what your mom said last night",
+			"bobby? is that you? i haven't seen you in ages!",
+			"i don't think this is going to work between us",
+			'who even are you again?',
+			'idk man sounds like bitch talk to me...',
+			"speaking of, pierogies really do be kinda slappin' ngl",
+			"hold that thought - i gotta drop a phat shit, i'll be back in a few hours",
+			"ayy no way! oh wait it's you nvm, pretend i'm ignoring you",
+			"ok i'm gonna be completely honest i didn't comprehend a single word of what you just said, you're too hot\n"
+			+ "try sending some nudes that will help me focus i think",
+			'hello yes this is pingbot how can i help?'
 		]
     sendMessage(message, selectFrom(replies), false)
   }
