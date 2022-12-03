@@ -1,5 +1,6 @@
 import { Message } from 'discord.js'
 import Sentiment from 'sentiment'
+import { getProb } from './db'
 import { nou } from './strings'
 import { selectFrom, sendMessage, should } from './utils'
 
@@ -16,10 +17,12 @@ const replies = [
 ]
 
 // come up with a response
-const pickResponse = (message: string, score: number, pos: Array<string>, neg: Array<string>, words: Array<string>): string | undefined => {
+const pickResponse = async (message: Message, score: number, pos: Array<string>, neg: Array<string>, words: Array<string>): Promise<string | undefined> => {
+	const msg = message.content
+
 	// only run it one in x times
 	// TODO make probability configurable
-	if  (should(1)) {
+	if  (should(await getProb(message.guildId, 'sentiment'))) {
 		// handle only positive and negative messages
 		if (score > 0) {
 			// positive sentiment
@@ -52,22 +55,22 @@ const pickResponse = (message: string, score: number, pos: Array<string>, neg: A
 		}
 	} else {
 		// still handle these when chance fails
-		if (/i love pingbot/.test(message)) {
+		if (/i love pingbot/.test(msg)) {
 			return 'heart <3'
-		} else if (/i hate pingbot/.test(message)) {
+		} else if (/i hate pingbot/.test(msg)) {
 			return ':\'('
 		}
 	}
 }
 
 // the thing handler function for sentience responding
-export const sentience = (message: Message): void => {
+export const sentience = async (message: Message): Promise<void> => {
 	// analyze the sentiment of the message
 	const sentiment = new Sentiment()
 	const analysis = sentiment.analyze(message.content)
 
 	// pick a response
-	const response = pickResponse(message.content, analysis.score, analysis.positive, analysis.negative, analysis.tokens)
+	const response = await pickResponse(message, analysis.score, analysis.positive, analysis.negative, analysis.tokens)
 
 	// if response is undefined, don't send the messsage
 	if (response) {

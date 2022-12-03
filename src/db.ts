@@ -21,7 +21,8 @@ export const defaults = {
   nickname: base,
   dm: base,
   chance: base,
-  rolled: base
+  rolled: base,
+  sentiment: 2
 }
 
 // function to get probability, and fallback if one isn't provided by config
