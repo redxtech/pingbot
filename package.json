@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@discordjs/builders": "^0.15.0",
-    "@discordjs/opus": "^0.7.0",
+    "@discordjs/opus": "^0.8.0",
     "@discordjs/rest": "^0.2.0-canary.0",
     "@discordjs/voice": "^0.7.5",
     "@types/sentiment": "^5.0.1",
