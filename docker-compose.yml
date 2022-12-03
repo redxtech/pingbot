@@ -1,9 +1,8 @@
 version: "3.9"
 services:
   pingbot:
-    build: .
+    build: ~/Code/pingbot
+    container_name: pingbot
     volumes:
-      - db:/usr/src/bot/db
-volumes:
-  db:
-    external: true
+      - ./db:/usr/src/bot/db
+    restart: unless-stopped
