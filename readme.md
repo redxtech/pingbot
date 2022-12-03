@@ -1,6 +1,15 @@
 # pingbot
 > the em*bot*iment of a shitpost.
 
+## join server & invite pingbot
+i have an official pingbot instance and discord server. you are welcome to invite it to
+your own server, and join the discord to discuss & get help with contributinig to
+and hosting pingbot.
+
+[**invite pingbot**](https://discord.com/api/oauth2/authorize?client_id=457716489412280320&permissions=1643361336897&scope=bot%20applications.commands)
+
+[**join discord**](https://discord.gg/sMTjxfkaBq)
+
 ## features
 
 ### chance-based
