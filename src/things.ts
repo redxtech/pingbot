@@ -1,13 +1,14 @@
 import { execSync } from 'child_process'
 import { GuildEmoji, Message, Permissions } from 'discord.js'
 
-import { generateNickname, selectFrom, sendMessage, should } from './utils'
+import { generateNickname, selectFrom, sendMessage } from './utils'
 import { playMonkey, playOof } from './funcs/voice'
 import { deployCommands } from './funcs/deploy-commands'
 
 import { Thing } from './types'
 import { hostId } from '../config'
-import { chad, getGot, navySeal, nou, rick, rock } from './strings'
+import { sentience } from './sentiment'
+import { chad, getGot, navySeal, rick, rock } from './strings'
 
 // ideas:
 // - create/assign random coloured roles
@@ -58,16 +59,11 @@ export const things: Thing[] = [
       })
     }
   },
-  {
-    name: 'PingBot Love',
-    match: /(\b((i|we)\b.+\b(love|like|appreciate))|(thanks))\b.+\bping\s*bot\b/,
-    exec: (m: Message): void => sendMessage(m, 'heart <3')
-  },
-  {
-    name: 'PingBot Hate',
-    match: /(\bi\b.+\b(hate|dislike)\b.+\bping\s*bot\b)|(\bfuck\b.+\bping\s*bot\b)|(\bping\s*bot (suck|eat|munche)s (dick|cock)\b)/,
-    exec: (m: Message): void => sendMessage(m, should(2) ? ":'(" : ")':")
-  },
+	{
+		name: 'pingbot sentience',
+		match: /pingbot/,
+		exec: sentience
+	},
   {
     name: 'O O F',
     match: /\bo(\s*)o\1f\b/,
@@ -89,23 +85,6 @@ export const things: Thing[] = [
       }
     }
   },
-	{
-		name: 'No U',
-		match: /\bping\s*bot\b.+\b(is|you're|youre|your|ur)\b.+\b(gay|bad|garbage|trash|ass|shit|the\b.+\bworst)\b/,
-		exec: (m: Message): void => {
-			const replies = [
-				nou,
-				'https://i.imgur.com/t1M9ffQ.gif',
-				'https://i.imgur.com/b3Yz5Qj.png',
-				'https://i.imgur.com/wa24eIx.gif',
-				'https://i.imgur.com/ejWUm1R.jpg',
-				'https://i.imgur.com/UMyQx52.png',
-				'https://i.imgur.com/aEBqGuU.jpg',
-				'https://i.imgur.com/AoETXik.jpg'
-			]
-			sendMessage(m, selectFrom(replies))
-		}
-	},
   {
     name: 'Chance',
     probability: 'chance',

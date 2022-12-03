@@ -24,6 +24,7 @@
     "@discordjs/opus": "^0.7.0",
     "@discordjs/rest": "^0.2.0-canary.0",
     "@discordjs/voice": "^0.7.5",
+    "@types/sentiment": "^5.0.1",
     "add": "^2.0.6",
     "bufferutil": "^4.0.5",
     "chalk": "^4.1.2",
@@ -34,6 +35,7 @@
     "javascript-typescript-langserver": "^2.11.3",
     "libsodium-wrappers": "^0.7.9",
     "nedb": "^1.8.0",
+    "sentiment": "^5.0.2",
     "sodium": "^3.0.2",
     "utf-8-validate": "^5.0.7",
     "yarn": "^1.22.17"
