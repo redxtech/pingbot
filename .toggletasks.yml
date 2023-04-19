@@ -1,0 +1,31 @@
+tasks:
+- name: run dev
+  cmd: yarn dev
+  cwd: ${config_dir}
+- name: build
+  cmd: yarn buld
+  cwd: ${config_dir}
+- name: start
+  cmd: yarn start
+  cwd: ${config_dir}
+- name: lint
+  cmd: yarn lint
+  cwd: ${config_dir}
+- name: lint fix
+  cmd: yarn lint --fix
+  cwd: ${config_dir}
+- name: lint prettier
+  cmd: yarn lint:prettier
+  cwd: ${config_dir}
+- name: lint prettier fix
+  cmd: yarn lint:prettier:fix
+  cwd: ${config_dir}
+- name: docker build
+  cmd: docker-compose build
+  cwd: ${config_dir}
+- name: docker up
+  cmd: docker-compose up
+  cwd: ${config_dir}
+- name: docker down
+  cmd: docker-compose down
+  cwd: ${config_dir}

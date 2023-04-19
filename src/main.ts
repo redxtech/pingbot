@@ -89,3 +89,4 @@ client.on('interactionCreate', slashHandler)
 
 // log in the client
 client.login(token)
+
