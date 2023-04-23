@@ -1,0 +1,13 @@
+# config file
+config.ts
+pingbot.config.json
+
+dist
+Bible.TXT
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

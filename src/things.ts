@@ -6,7 +6,7 @@ import { playMonkey, playOof } from './funcs/voice'
 import { deployCommands } from './funcs/deploy-commands'
 
 import { Thing } from './types'
-import { hostId } from '../config'
+import { config } from './config'
 import { sentience } from './sentiment'
 import { chad, getGot, navySeal, rick, rock } from './strings'
 
@@ -155,7 +155,7 @@ export const things: Thing[] = [
 	{
 		name: 'Server List',
 		match: /!pingbot servers/,
-		exec: (m: Message) => m.member?.user.id === hostId
+		exec: (m: Message) => m.member?.user.id === config.get('hostID')
 			? sendMessage(m, ['**server list:**', ...m.client.guilds.cache.map(g => g.name).map(g => `• ${g}`)].join('\n'))
 			: m.react('❌')
 	},
@@ -163,7 +163,7 @@ export const things: Thing[] = [
     name: 'Deploy Commands',
     match: /!pingbot deploy/,
     exec: async (m: Message): Promise<void> => {
-      if (m.member?.permissions.has(Permissions.FLAGS.MANAGE_GUILD) || m.author.id === hostId) {
+      if (m.member?.permissions.has(Permissions.FLAGS.MANAGE_GUILD) || m.author.id === config.get('hostID')) {
         try {
           await deployCommands(m.client.user?.id, m.guildId)
           m.react('✅')

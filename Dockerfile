@@ -7,7 +7,6 @@ RUN apt-get update && \
 			ffmpeg \
 			wcanadian
 
-
 # Create the bot's directory
 RUN mkdir -p /usr/src/bot
 WORKDIR /usr/src/bot

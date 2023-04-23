@@ -7,7 +7,7 @@ import { selectFrom, sendMessage, should } from './utils'
 import { things } from './things'
 import { slashHandler } from './slash-commands'
 
-import { token } from '../config'
+import { config } from './config'
 
 
 // create a client instance
@@ -88,5 +88,5 @@ client.on('messageCreate', async (message: Message) => {
 client.on('interactionCreate', slashHandler)
 
 // log in the client
-client.login(token)
+client.login(config.get('token'))
 

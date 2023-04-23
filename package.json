@@ -28,6 +28,7 @@
     "add": "^2.0.6",
     "bufferutil": "^4.0.5",
     "chalk": "^4.1.2",
+    "convict": "^6.2.4",
     "dayjs": "^1.10.7",
     "discord-api-types": "^0.26.1",
     "discord.js": "^13.8.1",
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",
+    "@types/convict": "^6.1.1",
     "@types/nedb": "^1.8.12",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",

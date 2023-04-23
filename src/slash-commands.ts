@@ -1,8 +1,11 @@
 import { Interaction, Permissions } from 'discord.js'
 import { EmbedBuilder } from '@discordjs/builders'
-import { hostId, clientID } from '../config';
-import { defaults, getProb, resetProb, setProb } from './db';
+import { config } from './config';
+import { probabilities as defaults, getProb, resetProb, setProb } from './db';
 import { getMsDiff, upCase } from './utils';
+
+const hostID = config.get('hostID')
+const clientID = config.get('clientID')
 
 // function to handle slash commands
 export const slashHandler = async (interaction: Interaction): Promise<void> => {
@@ -18,7 +21,7 @@ export const slashHandler = async (interaction: Interaction): Promise<void> => {
     const subCommandName = interaction.options.getSubcommand()
 
     if (subCommandName === 'config') {
-      if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostId) {
+      if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostID) {
         // pull the values from the options
         const name = interaction.options.get('name')?.value as string
         const value = interaction.options.get('value')?.value as number
@@ -33,7 +36,7 @@ export const slashHandler = async (interaction: Interaction): Promise<void> => {
         await interaction.reply({ content: `Probability updated - ${name}: ${value}.`, ephemeral: true });
       }
     } else if (subCommandName === 'reset') {
-      if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostId) {
+      if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostID) {
         // remove entries from database
         resetProb(interaction.guildId)
 
@@ -41,7 +44,7 @@ export const slashHandler = async (interaction: Interaction): Promise<void> => {
         await interaction.reply({ content: 'Probabilities reset!', ephemeral: true})
       }
     } else if (subCommandName === 'show') {
-      if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostId) {
+      if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostID) {
         // get the guild ID
         const guildId = interaction.guildId
 

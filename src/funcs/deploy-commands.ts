@@ -2,8 +2,8 @@ import { Snowflake } from 'discord.js'
 import { SlashCommandBuilder } from '@discordjs/builders'
 import { REST } from '@discordjs/rest'
 import { Routes } from 'discord-api-types/v9'
-import { token } from '../../config'
-import { defaults } from '../db'
+import { config } from '../config'
+import { probabilities } from '../db'
 
 export const deployCommands = (clientId: Snowflake | undefined, guildId: Snowflake | null): Promise<unknown> => {
 	// array of commands
@@ -19,7 +19,7 @@ export const deployCommands = (clientId: Snowflake | undefined, guildId: Snowfla
 						option
 							.setName('name')
 							.setDescription('the name of the probability to set')
-							.addChoices(...Object.keys(defaults).map(k => { return { name: k, value: k } }))
+							.addChoices(...Object.keys(probabilities).map(k => { return { name: k, value: k } }))
 							.setRequired(true))
 					.addIntegerOption(option =>
 						option
@@ -45,8 +45,8 @@ export const deployCommands = (clientId: Snowflake | undefined, guildId: Snowfla
 					.setDescription('invite pingbot to your own server !'))
 	].map(command => command.toJSON())
 
-	// create a rest request to the api
-	const rest = new REST({ version: '9' }).setToken(token);
+  // create a rest request to the api
+  const rest = new REST({ version: '9' }).setToken(config.get('token'));
 
 	// if clientID and guildId are valid, put the commands to the command route
 	if (clientId && guildId) {

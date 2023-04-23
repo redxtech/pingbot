@@ -1,7 +1,7 @@
 import { Snowflake } from 'discord-api-types'
 import { DBItem } from './types'
 
-import { probabilities } from '../config'
+import { config } from './config'
 
 import Datastore = require('nedb')
 
@@ -11,28 +11,21 @@ const db = new Datastore({
   autoload: true
 })
 
-// one option for standard probability
-const base = 1000
-
-// default values
-export const defaults = {
-  ping: base * 10,
-  react: base / 10,
-  nickname: base,
-  dm: base,
-  chance: base,
-  rolled: base,
-  sentiment: 2
-}
+// get probablities from config
+export const probabilities = config.get('probabilities')
+// export const probabilities = {
+//   ping: config.get('probabilities.ping'),
+//   react: config.get('probabilities.react'),
+//   nickname: config.get('probabilities.nickname'),
+//   chad: config.get('probabilities.chad'),
+//   rolled: config.get('probabilities.rolled')
+// }
 
 // function to get probability, and fallback if one isn't provided by config
 const getDefaultProb = (n: string): number => {
   // return config value if it exists, return default value otherwise
-  return Object.prototype.hasOwnProperty.call(probabilities, n)
-    // @ts-expect-error can't expect user to use proper type in config.ts
-    ? probabilities[n]
-    // @ts-expect-error can't expect user to use proper type in config.ts
-    : defaults[n]
+  // @ts-expect-error idk what's up here
+  return probabilities[n]
 }
 
 // function to set probability in the db

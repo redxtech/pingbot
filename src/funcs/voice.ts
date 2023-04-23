@@ -8,7 +8,7 @@ import {
 
 import { sendMessage } from '../utils'
 
-import { sounds } from '../../config'
+import { config } from '../config'
 
 export const playOof = (m: Message): void => {
   // detect if the user is in a voice channel
@@ -28,7 +28,7 @@ export const playOof = (m: Message): void => {
       })
 
       // create the audio player
-      const oofSound = createAudioResource(sounds.oof)
+      const oofSound = createAudioResource(config.get('sounds.oof'))
       const player = createAudioPlayer()
       player.play(oofSound)
 
@@ -70,7 +70,7 @@ export const playMonkey = (m: Message): void => {
       })
 
       // create the audio player
-      const monkeySound = createAudioResource(sounds.monkey)
+      const monkeySound = createAudioResource(config.get('sounds.monkey'))
       const player = createAudioPlayer()
       player.play(monkeySound)
 
