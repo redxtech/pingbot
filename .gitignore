@@ -5,6 +5,7 @@ dist
 tags
 probabilities.nedb
 Bible.TXT
+data
 
 # Logs
 logs

@@ -1,9 +1,18 @@
 # config file
-config.ts
 pingbot.config.json
 
+# other stuff
 dist
 Bible.TXT
+node_modules
+data
+.github
+.toggletasks
+.vscode
+db
+resources/pingbot*.png
+.neoconf.json
+.toggletasks.yml
 
 # Logs
 logs

@@ -7,18 +7,14 @@ RUN apt-get update && \
 			ffmpeg \
 			wcanadian
 
-# Create the bot's directory
-RUN mkdir -p /usr/src/bot
-WORKDIR /usr/src/bot
+WORKDIR /app/pingbot
 
-COPY package.json /usr/src/bot
+COPY package.json /app/pingbot
+
 RUN yarn install
 
-VOLUME ["/usr/src/bot/node_modules"]
-
-COPY . /usr/src/bot
+ADD . .
 
 RUN yarn build
 
-# Start the bot.
-CMD ["node", "dist/src/main.js"]
+CMD ["node", "dist/main.js"]

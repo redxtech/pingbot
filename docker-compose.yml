@@ -3,6 +3,22 @@ services:
   pingbot:
     build: ~/Code/pingbot
     container_name: pingbot
-    volumes:
-      - ./db:/usr/src/bot/db
     restart: unless-stopped
+    environment:
+      DB_URL: mongodb://pingbot:pingbot@pingbot_mongo:27017
+    volumes:
+      - ./pingbot.config.json:/app/pingbot/pingbot.config.json
+  db:
+    image: docker.io/mongo
+    container_name: pingbot_mongo
+    restart: always
+    environment:
+      # default password for the database.
+      # change it before you actually use it though.
+      # you will also need to update the DB_URL above.
+      MONGO_INITDB_ROOT_USERNAME: pingbot
+      MONGO_INITDB_ROOT_PASSWORD: pingbot
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db

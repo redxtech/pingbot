@@ -91,6 +91,50 @@ export const config = convict({
       env: 'PATH_MONKEY',
       arg: 'path-monkey'
     },
+  },
+  db: {
+    url: {
+      doc: 'Mongo connection URL',
+      format: String,
+      default: undefined,
+      env: 'DB_URL',
+      arg: 'db-url',
+    },
+    host: {
+      doc: 'Database host name/IP',
+      format: '*',
+      default: undefined,
+      env: 'DB_HOST',
+      arg: 'db-host',
+    },
+    port: {
+      doc: 'The port to connect to the database with',
+      format: 'port',
+      default: 27017,
+      env: 'DB_PORT',
+      arg: 'db-port',
+    },
+    name: {
+      doc: 'Database name',
+      format: String,
+      default: 'pingbot',
+      env: 'DB_NAME',
+      arg: 'db-name',
+    },
+    username: {
+      doc: 'Database username',
+      format: String,
+      default: 'pingbot',
+      env: 'DB_USER',
+      arg: 'db-user',
+    },
+    password: {
+      doc: 'Database password',
+      format: String,
+      default: 'pingbot',
+      env: 'DB_PASS',
+      arg: 'db-pass',
+    },
   }
 });
 
