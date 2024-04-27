@@ -6,6 +6,9 @@ tags
 probabilities.nedb
 Bible.TXT
 data
+_*.yaml
+.devenv
+.direnv
 
 # Logs
 logs
