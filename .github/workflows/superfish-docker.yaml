@@ -4,8 +4,9 @@ on:
     branches:
       - '*'
 env:
-  DOCKER_USERNAME: robot$pingbot+pingbot-gh-actions
+  DOCKER_USERNAME: robot$gabe+ci
   NAME: pingbot
+  REPO: gabe
 permissions:
   contents: read
 jobs:
@@ -25,12 +26,12 @@ jobs:
         run: |-
           DOCKER_BUILDKIT=1 docker build \
             --build-arg BUILDKIT_INLINE_CACHE=1 \
-            --cache-from "docker.super.fish/pingbot/$NAME:latest" \
-            --tag "docker.super.fish/pingbot/$NAME:$GITHUB_SHA" \
-            --tag "docker.super.fish/pingbot/$NAME:latest" \
+            --cache-from "docker.super.fish/$REPO/$NAME:latest" \
+            --tag "docker.super.fish/$REPO/$NAME:$GITHUB_SHA" \
+            --tag "docker.super.fish/$REPO/$NAME:latest" \
             .
 
       - name: Publish
         run: |-
-          docker push "docker.super.fish/pingbot/$NAME:latest" && \
-          docker push "docker.super.fish/pingbot/$NAME:$GITHUB_SHA"
+          docker push "docker.super.fish/$REPO/$NAME:latest" && \
+          docker push "docker.super.fish/$REPO/$NAME:$GITHUB_SHA"
