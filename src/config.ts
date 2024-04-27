@@ -1,11 +1,11 @@
-import convict from 'convict';
+import convict from 'convict'
 
 export const config = convict({
   env: {
     doc: 'The application environment.',
     format: ['production', 'development', 'test'],
     default: 'development',
-    env: 'NODE_ENV',
+    env: 'NODE_ENV'
   },
   token: {
     doc: 'Discord bot token',
@@ -20,7 +20,7 @@ export const config = convict({
     env: 'CLIENT_ID'
   },
   hostID: {
-    doc: 'UUID of bot\'s host',
+    doc: "UUID of bot's host",
     format: String,
     default: null,
     env: 'HOST_ID'
@@ -31,42 +31,42 @@ export const config = convict({
       format: 'nat',
       default: 10_000,
       env: 'PROB_PING',
-      arg: 'prob-ping',
+      arg: 'prob-ping'
     },
     react: {
       doc: 'Probability of reacting',
       format: 'nat',
       default: 100,
       env: 'PROB_REACT',
-      arg: 'prob-react',
+      arg: 'prob-react'
     },
     nickname: {
       doc: 'Probability of nicknaming',
       format: 'nat',
       default: 1_000,
       env: 'PROB_NICKNAME',
-      arg: 'prob-nickname',
+      arg: 'prob-nickname'
     },
     dm: {
       doc: 'Probability of sending a DM',
       format: 'nat',
       default: 1_000,
       env: 'PROB_DM',
-      arg: 'prob-dm',
+      arg: 'prob-dm'
     },
     chance: {
       doc: 'Probability of doing the chad chance thing',
       format: 'nat',
       default: 1_000,
       env: 'PROB_CHANCE',
-      arg: 'prob-chance',
+      arg: 'prob-chance'
     },
     rolled: {
       doc: 'Probability of getting rolled',
       format: 'nat',
       default: 1_000,
       env: 'PROB_ROLLED',
-      arg: 'prob-rolled',
+      arg: 'prob-rolled'
     },
     sentiment: {
       doc: 'Probability of pingbot using sentiment analysis',
@@ -90,7 +90,7 @@ export const config = convict({
       default: '/usr/src/bot/src/resources/oo-oo-aa-aa.ogg',
       env: 'PATH_MONKEY',
       arg: 'path-monkey'
-    },
+    }
   },
   db: {
     url: {
@@ -98,45 +98,44 @@ export const config = convict({
       format: String,
       default: undefined,
       env: 'DB_URL',
-      arg: 'db-url',
+      arg: 'db-url'
     },
     host: {
       doc: 'Database host name/IP',
       format: '*',
       default: undefined,
       env: 'DB_HOST',
-      arg: 'db-host',
+      arg: 'db-host'
     },
     port: {
       doc: 'The port to connect to the database with',
       format: 'port',
       default: 27017,
       env: 'DB_PORT',
-      arg: 'db-port',
+      arg: 'db-port'
     },
     name: {
       doc: 'Database name',
       format: String,
       default: 'pingbot',
       env: 'DB_NAME',
-      arg: 'db-name',
+      arg: 'db-name'
     },
     username: {
       doc: 'Database username',
       format: String,
       default: 'pingbot',
       env: 'DB_USER',
-      arg: 'db-user',
+      arg: 'db-user'
     },
     password: {
       doc: 'Database password',
       format: String,
       default: 'pingbot',
       env: 'DB_PASS',
-      arg: 'db-pass',
-    },
+      arg: 'db-pass'
+    }
   }
-});
+})
 
-config.loadFile(process.cwd() + '/pingbot.config.json');
-
+config.loadFile(process.cwd() + '/pingbot.config.json')
