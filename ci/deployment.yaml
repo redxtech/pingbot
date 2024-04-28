@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingbot
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: pingbot
+          image: docker.super.fish/gabe/pingbot
+          imagePullPolicy: Always
+          env:
+          - name: DB_HOST
+            value: pingbot-mongo
+          - name: DB_URL
+            valueFrom:
+              secretKeyRef:
+                name: pingbot-config-mongo
+                key: url
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: pingbot-config-mongo
+                key: username
+          - name: DB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: pingbot-config-mongo
+                key: password
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: pingbot-config-mongo
+                key: db
+          envFrom:
+            - secretRef:
+                name: pingbot-config
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            limits:
+              cpu: '1'
+              memory: 1Gi
+          volumeMounts:
+            - mountPath: /app/pingbot/pingbot.config.json
+              name: config
+              subPath: pingbot.config.json
+      restartPolicy: Always
+      volumes:
+        - name: config
+          configMap:
+            name: pingbot-config

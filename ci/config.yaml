@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pingbot-config
+data:
+  pingbot.config.json: |-
+    {}

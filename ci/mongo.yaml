@@ -1,0 +1,98 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: pingbot-mongo
+spec:
+  replicas: 1
+  serviceName: pingbot-mongo
+  template:
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 1000
+      containers:
+        - name: pingbot-mongo
+          image: bitnami/mongodb:7.0
+          imagePullPolicy: Always
+          env:
+            - name: MONGODB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pingbot-config-mongo
+                  key: rootPassword
+            - name: MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: pingbot-config-mongo
+                  key: username
+            - name: MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pingbot-config-mongo
+                  key: password
+            - name: MONGODB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: pingbot-config-mongo
+                  key: db
+          ports:
+            - containerPort: 27017
+          securityContext:
+            allowPrivilegeEscalation: false
+            seccompProfile:
+              type: RuntimeDefault
+            capabilities:
+              drop: [ALL]
+          volumeMounts:
+            - name: pingbot-mongo
+              mountPath: /bitnami/mongodb
+            - name: pingbot-mongo-init
+              mountPath: /docker-entrypoint-initdb.d/db-init.js
+              subPath: db-init.js
+      volumes:
+        - name: pingbot-mongo-init
+          configMap:
+            name: pingbot-mongo-init
+  volumeClaimTemplates:
+    - metadata:
+        name: pingbot-mongo
+        finalizers:
+          - kubernetes.io/pvc-protection
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pingbot-mongo-init
+data:
+  db-init.js: |-
+    db.createUser(
+      {
+        user: process.env.MONGODB_USER,
+        pwd: process.env.MONGODB_PASSWORD,
+        roles: [
+          {
+            role: "readWrite",
+            db: process.env.MONGODB_DATABASE
+          },
+          { role: "clusterMonitor", db:"admin"}
+        ]
+      }
+    )
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pingbot-mongo
+spec:
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+      name: mongo
