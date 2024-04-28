@@ -80,14 +80,14 @@ export const config = convict({
     oof: {
       doc: 'Path to oof sound file',
       format: String,
-      default: '/usr/src/bot/src/resources/oof.ogg',
+      default: '/app/pingbot/src/resources/oof.ogg',
       env: 'PATH_OOF',
       arg: 'path-oof'
     },
     monkey: {
       doc: 'Path to monkey sound file',
       format: String,
-      default: '/usr/src/bot/src/resources/oo-oo-aa-aa.ogg',
+      default: '/app/pingbot/src/resources/oo-oo-aa-aa.ogg',
       env: 'PATH_MONKEY',
       arg: 'path-monkey'
     }
