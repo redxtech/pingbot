@@ -46,7 +46,7 @@
           languages = {
             javascript = {
               enable = true;
-              package = pkgs.nodejs_22;
+              package = pkgs.nodejs_18;
               corepack.enable = true;
             };
             typescript.enable = true;
