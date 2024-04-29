@@ -6,7 +6,7 @@ i have an official pingbot instance and discord server. you are welcome to invit
 your own server, and join the discord to discuss & get help with contributinig to
 and hosting pingbot.
 
-[**invite pingbot**](https://discord.com/api/oauth2/authorize?client_id=457716489412280320&permissions=1643361336897&scope=bot%20applications.commands)
+[**invite pingbot**](https://discord.com/api/oauth2/authorize?client_id=889104837243985932&permissions=8&scope=bot%20applications.commands)
 
 [**join discord**](https://discord.gg/sMTjxfkaBq)
 
