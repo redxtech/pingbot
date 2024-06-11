@@ -1,8 +1,8 @@
 import { Interaction, Permissions } from 'discord.js'
 import { EmbedBuilder } from '@discordjs/builders'
-import { config } from './config';
-import { probabilities as defaults, getProb, resetProb, setProb } from './db';
-import { getMsDiff, upCase } from './utils';
+import { config } from './config'
+import { probabilities as defaults, getProb, resetProb, setProb } from './db'
+import { getMsDiff, upCase } from './utils'
 
 const hostID = config.get('hostID')
 const clientID = config.get('clientID')
@@ -10,18 +10,21 @@ const clientID = config.get('clientID')
 // function to handle slash commands
 export const slashHandler = async (interaction: Interaction): Promise<void> => {
   // only handle slash command interactions
-	if (!interaction.isCommand()) return;
+  if (!interaction.isCommand()) return
 
   // we need the command name
-	const { commandName } = interaction;
+  const { commandName } = interaction
 
   // this is the only command for now
-	if (commandName === 'pingbot') {
+  if (commandName === 'pingbot') {
     // get the subcommand
     const subCommandName = interaction.options.getSubcommand()
 
     if (subCommandName === 'config') {
-      if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostID) {
+      if (
+        interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) ||
+        interaction.user.id === hostID
+      ) {
         // pull the values from the options
         const name = interaction.options.get('name')?.value as string
         const value = interaction.options.get('value')?.value as number
@@ -33,18 +36,30 @@ export const slashHandler = async (interaction: Interaction): Promise<void> => {
         setProb({ guildId, name, value })
 
         // respond to the message
-        await interaction.reply({ content: `Probability updated - ${name}: ${value}.`, ephemeral: true });
+        await interaction.reply({
+          content: `Probability updated - ${name}: ${value}.`,
+          ephemeral: true
+        })
       }
     } else if (subCommandName === 'reset') {
-      if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostID) {
+      if (
+        interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) ||
+        interaction.user.id === hostID
+      ) {
         // remove entries from database
         resetProb(interaction.guildId)
 
         // respond to the message
-        await interaction.reply({ content: 'Probabilities reset!', ephemeral: true})
+        await interaction.reply({
+          content: 'Probabilities reset!',
+          ephemeral: true
+        })
       }
     } else if (subCommandName === 'show') {
-      if (interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) || interaction.user.id === hostID) {
+      if (
+        interaction.memberPermissions?.has(Permissions.FLAGS.MANAGE_GUILD) ||
+        interaction.user.id === hostID
+      ) {
         // get the guild ID
         const guildId = interaction.guildId
 
@@ -58,32 +73,54 @@ export const slashHandler = async (interaction: Interaction): Promise<void> => {
         }
 
         // respond to the message
-        interaction.reply({ content: `**Probabilities for ${interaction.guild?.name}:**\n` + probabilities.map(p => upCase(p)).join('\n'), ephemeral: true })
+        interaction.reply({
+          content:
+            `**Probabilities for ${interaction.guild?.name}:**\n` +
+            probabilities.map((p) => upCase(p)).join('\n'),
+          ephemeral: true
+        })
       }
-		} else if (subCommandName === 'info') {
-			const embed = new EmbedBuilder()
-				.setColor(0x5865F2)
-				.setTitle('about pingbot - click to invite')
-				.setURL(`https://discord.com/api/oauth2/authorize?client_id=${clientID}&permissions=8&scope=bot%20applications.commands`)
-				.setDescription('pingbot is the em*bot*iment of a shitpost.\nyou have been graced with his presence.')
-				.addFields(...[
-					{ name: 'servers', value: interaction.client.guilds.cache.size.toString()},
-					{ name: 'users', value: interaction.client.guilds.cache.map(g => g.memberCount).reduce((s, v) => s + v).toString()},
-					{ name: 'author', value: '<@170451883134156800>'},
-					{ name: 'gh repo', value: 'https://github.com/redxtech/devmod' }
-				])
-				.setFooter({ text: `uptime: ${getMsDiff(interaction.client.uptime || 0)}` })
-				.setTimestamp()
-				.toJSON()
+    } else if (subCommandName === 'info') {
+      const embed = new EmbedBuilder()
+        .setColor(0x5865f2)
+        .setTitle('about pingbot - click to invite')
+        .setURL(
+          `https://discord.com/api/oauth2/authorize?client_id=${clientID}&permissions=8&scope=bot%20applications.commands`
+        )
+        .setDescription(
+          'pingbot is the em*bot*iment of a shitpost.\nyou have been graced with his presence.'
+        )
+        .addFields(
+          ...[
+            {
+              name: 'servers',
+              value: interaction.client.guilds.cache.size.toString()
+            },
+            {
+              name: 'users',
+              value: interaction.client.guilds.cache
+                .map((g) => g.memberCount)
+                .reduce((s, v) => s + v)
+                .toString()
+            },
+            { name: 'author', value: '<@170451883134156800>' },
+            { name: 'gh repo', value: 'https://github.com/redxtech/pingbot' }
+          ]
+        )
+        .setFooter({
+          text: `uptime: ${getMsDiff(interaction.client.uptime || 0)}`
+        })
+        .setTimestamp()
+        .toJSON()
 
-			interaction.reply({
-				embeds: [embed]
-			})
+      interaction.reply({
+        embeds: [embed]
+      })
     } else if (subCommandName === 'invite') {
-			interaction.reply({
-				content: `https://discord.com/api/oauth2/authorize?client_id=${clientID}&permissions=8&scope=bot%20applications.commands`,
-				ephemeral: true
-			})
-		}
+      interaction.reply({
+        content: `https://discord.com/api/oauth2/authorize?client_id=${clientID}&permissions=8&scope=bot%20applications.commands`,
+        ephemeral: true
+      })
+    }
   }
 }
